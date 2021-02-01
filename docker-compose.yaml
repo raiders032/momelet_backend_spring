@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  spring:
+    container_name: spring
+    image: "neptunes032/momelet_spring"
+    env_file:
+      - ./env/spring.env
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - 9090:9090
+    restart: always
+volumes:
+  prometheus_data:
