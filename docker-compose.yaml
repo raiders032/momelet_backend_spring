@@ -5,6 +5,8 @@ services:
     image: "neptunes032/momelet_spring"
     env_file:
       - ./env/spring.env
+    ports:
+    - 8080:8080
   prometheus:
     container_name: prometheus
     image: prom/prometheus
@@ -13,6 +15,15 @@ services:
       - prometheus_data:/prometheus
     ports:
       - 9090:9090
-    restart: always
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - 3030:3000
+    depends_on:
+      - prometheus
 volumes:
   prometheus_data:
+  grafana_data:
