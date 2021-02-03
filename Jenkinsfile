@@ -7,10 +7,18 @@ pipeline {
   agent any
   stages {
     stage('Cloning Git') {
-        checkout scm
+        steps{
+            script {
+                checkout scm
+            }
+        }
     }
     stage('Build & Test'){
-        sh './gradlew build -x test'
+       steps{
+            script {
+                sh './gradlew build -x test'
+            }
+        }
     }
     stage('Building image') {
       steps{
