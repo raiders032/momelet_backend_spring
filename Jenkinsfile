@@ -4,7 +4,7 @@ node{
     }
 
     stage('Build & Test'){
-        sh './gradlew clean build'
+        sh './gradlew build -x test'
     }
 
     stage ('Build Docker Image'){
