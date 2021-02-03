@@ -1,4 +1,9 @@
 node{
+    environment {
+        registry = "neptunes032/momelet_spring"
+        registryCredential = 'docker-hub'
+    }
+
     stage('SCM Checkout'){
         checkout scm
     }
@@ -8,14 +13,26 @@ node{
     }
 
     stage ('Build Docker Image'){
-        //
+        steps {
+            script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            }
+        }
     }
 
     stage ('Push Dokcer Image'){
-      //
+        steps{
+            script {
+                docker.withRegistry( '', registryCredential ) {
+                dockerImage.push()
+             }
+           }
+        }
     }
 
-    stage('Deploy'){
-      //
+    stage('Remove Unused docker image'){
+        steps{
+              sh "docker rmi $registry:$BUILD_NUMBER"
+         }
     }
 }
