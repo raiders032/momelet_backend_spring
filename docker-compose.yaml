@@ -2,7 +2,7 @@ version: "3.8"
 services:
   spring:
     container_name: spring
-    image: "neptunes032/momelet_spring"
+    image: "neptunes032/momelet_spring:latest"
     env_file:
       - ./env/spring.env
     ports:

@@ -62,7 +62,17 @@ pipeline {
       }
     }
 
-
+    stage('deploy') {
+          steps{
+            withAWS(credentials:"$AWS_CREDENTIALS") {
+               sh 'aws deploy create-deployment \
+                              --application-name momelet-deploy-app \
+                              --deployment-group-name momelet-spring \
+                              --region ap-northeast-2 \
+                              --s3-location bucket=momelet-deploy,bundleType=zip,key=momelet_spring.zip'
+            }
+          }
+        }
 
   }
 }
