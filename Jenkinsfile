@@ -56,7 +56,7 @@ pipeline {
 
     stage('upload to AWS S3') {
       steps{
-        withAWS(credentials:"$AWS_CREDENTIALS") {
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS_CREDENTIALS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
             sh 'aws s3 cp deploy/momelet_spring.zip s3://momelet-deploy/momelet_spring.zip --region ap-northeast-2'
         }
       }
@@ -64,7 +64,7 @@ pipeline {
 
     stage('deploy') {
           steps{
-            withAWS(credentials:"$AWS_CREDENTIALS") {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS_CREDENTIALS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                sh 'aws deploy create-deployment \
                               --application-name momelet-deploy-app \
                               --deployment-group-name momelet-spring \
