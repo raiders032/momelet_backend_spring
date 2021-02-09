@@ -13,6 +13,7 @@ pipeline {
             }
         }
     }
+
     stage('Build & Test'){
        steps{
             script {
@@ -20,6 +21,7 @@ pipeline {
             }
         }
     }
+
     stage('Building image') {
       steps{
         script {
@@ -27,6 +29,7 @@ pipeline {
         }
       }
     }
+
     stage('Deploy Image') {
       steps{
         script {
@@ -36,13 +39,14 @@ pipeline {
         }
       }
     }
+
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:latest"
       }
     }
 
-    stage('make zip file & upload to AWS S3') {
+    stage('make zip file') {
       steps{
             sh 'mkdir -p before-deploy'
             sh 'cp scripts/*.sh before-deploy/'
