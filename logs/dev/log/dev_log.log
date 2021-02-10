@@ -1,0 +1,285 @@
+2021-02-05 | 19:33:38.997 | background-preinit   |  INFO | o.h.v.i.util.Version      | ID:          | HV000001: Hibernate Validator 6.0.20.Final
+2021-02-05 | 19:33:39.032 | restartedMain        |  INFO | c.swm.sprint1.Application | ID:          | Starting Application on yeongsamnoui-MacBookPro.local with PID 6738 (/Users/YT/Desktop/project/momelet/backend/spring/build/classes/java/main started by YT in /Users/YT/Desktop/project/momelet/backend/spring)
+2021-02-05 | 19:33:39.033 | restartedMain        | DEBUG | c.swm.sprint1.Application | ID:          | Running with Spring Boot v2.2.10.RELEASE, Spring v5.2.9.RELEASE
+2021-02-05 | 19:33:39.033 | restartedMain        |  INFO | c.swm.sprint1.Application | ID:          | The following profiles are active: jwt,oauth,aws,dev,dev-db
+2021-02-05 | 19:33:39.075 | restartedMain        |  INFO | ertyDefaultsPostProcessor | ID:          | Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-05 | 19:33:39.075 | restartedMain        |  INFO | ertyDefaultsPostProcessor | ID:          | For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-05 | 19:33:40.012 | restartedMain        |  INFO | toryConfigurationDelegate | ID:          | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-05 | 19:33:40.099 | restartedMain        |  INFO | toryConfigurationDelegate | ID:          | Finished Spring Data repository scanning in 81ms. Found 11 JPA repository interfaces.
+2021-02-05 | 19:33:40.350 | restartedMain        |  INFO | $BeanPostProcessorChecker | ID:          | Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5dd73c5f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-05 | 19:33:40.358 | restartedMain        |  INFO | $BeanPostProcessorChecker | ID:          | Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-05 | 19:33:40.663 | restartedMain        |  INFO | s.b.w.e.t.TomcatWebServer | ID:          | Tomcat initialized with port(s): 8080 (http)
+2021-02-05 | 19:33:40.670 | restartedMain        |  INFO | o.a.c.h.Http11NioProtocol | ID:          | Initializing ProtocolHandler ["http-nio-8080"]
+2021-02-05 | 19:33:40.670 | restartedMain        |  INFO | o.a.c.c.StandardService   | ID:          | Starting service [Tomcat]
+2021-02-05 | 19:33:40.670 | restartedMain        |  INFO | o.a.c.core.StandardEngine | ID:          | Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-02-05 | 19:33:40.739 | restartedMain        |  INFO | o.a.c.c.C.[.[.[/]         | ID:          | Initializing Spring embedded WebApplicationContext
+2021-02-05 | 19:33:40.740 | restartedMain        |  INFO | bServerApplicationContext | ID:          | Root WebApplicationContext: initialization completed in 1665 ms
+2021-02-05 | 19:33:40.930 | restartedMain        |  WARN | ation$JpaWebConfiguration | ID:          | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-05 | 19:33:41.063 | restartedMain        |  INFO | o.h.j.i.util.LogHelper    | ID:          | HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-05 | 19:33:41.130 | restartedMain        |  INFO | org.hibernate.Version     | ID:          | HHH000412: Hibernate ORM core version 5.4.21.Final
+2021-02-05 | 19:33:41.257 | restartedMain        |  INFO | o.h.a.common.Version      | ID:          | HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-05 | 19:33:41.344 | restartedMain        |  INFO | c.z.h.HikariDataSource    | ID:          | HikariPool-1 - Starting...
+2021-02-05 | 19:33:41.730 | restartedMain        |  INFO | c.z.h.HikariDataSource    | ID:          | HikariPool-1 - Start completed.
+2021-02-05 | 19:33:41.752 | restartedMain        |  INFO | o.h.dialect.Dialect       | ID:          | HHH000400: Using dialect: com.swm.sprint1.config.MysqlCustomDialect
+2021-02-05 | 19:33:42.734 | restartedMain        |  INFO | .p.i.JtaPlatformInitiator | ID:          | HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-05 | 19:33:42.744 | restartedMain        |  INFO | rEntityManagerFactoryBean | ID:          | Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-05 | 19:33:43.434 | restartedMain        | DEBUG | TokenAuthenticationFilter | ID:          | Filter 'tokenAuthenticationFilter' configured for use
+2021-02-05 | 19:33:43.481 | restartedMain        |  INFO | .OptionalLiveReloadServer | ID:          | LiveReload server is running on port 35729
+2021-02-05 | 19:33:44.321 | restartedMain        |  INFO | e.w.EndpointLinksResolver | ID:          | Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-02-05 | 19:33:44.551 | restartedMain        |  INFO | WelcomePageHandlerMapping | ID:          | Adding welcome page template: index
+2021-02-05 | 19:33:44.620 | restartedMain        |  INFO | efaultSecurityFilterChain | ID:          | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35716dea, org.springframework.security.web.context.SecurityContextPersistenceFilter@69f534fa, org.springframework.security.web.header.HeaderWriterFilter@3c96f49e, org.springframework.web.filter.CorsFilter@dc94fd5, org.springframework.security.web.authentication.logout.LogoutFilter@364cf73, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@580f621b, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@6da55b02, com.swm.sprint1.security.TokenAuthenticationFilter@3d018229, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66f16ced, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5cac8c9e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a85f082, org.springframework.security.web.session.SessionManagementFilter@5c5bffb3, org.springframework.security.web.access.ExceptionTranslationFilter@4f11c120, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3dc9923a]
+2021-02-05 | 19:33:44.703 | restartedMain        |  INFO | .c.ThreadPoolTaskExecutor | ID:          | Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-05 | 19:33:44.970 | restartedMain        |  INFO | tationPluginsBootstrapper | ID:          | Context refreshed
+2021-02-05 | 19:33:44.986 | restartedMain        |  INFO | tationPluginsBootstrapper | ID:          | Found 1 custom documentation plugin(s)
+2021-02-05 | 19:33:44.995 | restartedMain        |  INFO | piListingReferenceScanner | ID:          | Scanning for api listing references
+2021-02-05 | 19:33:45.142 | restartedMain        |  INFO | ingOperationNameGenerator | ID:          | Generating unique operation named: getRestaurantUsingGET_1
+2021-02-05 | 19:33:45.207 | restartedMain        |  INFO | o.a.c.h.Http11NioProtocol | ID:          | Starting ProtocolHandler ["http-nio-8080"]
+2021-02-05 | 19:33:45.233 | restartedMain        |  INFO | s.b.w.e.t.TomcatWebServer | ID:          | Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-05 | 19:33:45.235 | restartedMain        |  INFO | c.swm.sprint1.Application | ID:          | Started Application in 6.624 seconds (JVM running for 7.195)
+2021-02-05 | 19:33:45.400 | tion(3)-192.168.0.25 |  INFO | o.a.c.c.C.[.[.[/]         | ID:          | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-05 | 19:33:45.400 | tion(3)-192.168.0.25 |  INFO | o.s.w.s.DispatcherServlet | ID:          | Initializing Servlet 'dispatcherServlet'
+2021-02-05 | 19:33:45.407 | tion(3)-192.168.0.25 |  INFO | o.s.w.s.DispatcherServlet | ID:          | Completed initialization in 7 ms
+2021-02-05 | 19:34:30.123 | http-nio-8080-exec-3 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        user0_.user_id as user_id1_11_,
+        user0_.created_date_time as created_2_11_,
+        user0_.updated_date_time as updated_3_11_,
+        user0_.email as email4_11_,
+        user0_.email_verified as email_ve5_11_,
+        user0_.image_url as image_ur6_11_,
+        user0_.name as name7_11_,
+        user0_.password as password8_11_,
+        user0_.provider as provider9_11_,
+        user0_.provider_id as provide10_11_ 
+    from
+        users user0_ 
+    where
+        user0_.provider=? 
+        and user0_.provider_id=?
+2021-02-05 | 19:34:30.132 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [VARCHAR] - [kakao]
+2021-02-05 | 19:34:30.132 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [2] as [VARCHAR] - [1616111746]
+2021-02-05 | 19:34:30.173 | http-nio-8080-exec-3 | DEBUG | henticationSuccessHandler | ID:          | OAuth2AuthenticationSuccessHandler 호출 됨
+2021-02-05 | 19:34:30.203 | http-nio-8080-exec-3 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        user0_.user_id as user_id1_11_0_,
+        user0_.created_date_time as created_2_11_0_,
+        user0_.updated_date_time as updated_3_11_0_,
+        user0_.email as email4_11_0_,
+        user0_.email_verified as email_ve5_11_0_,
+        user0_.image_url as image_ur6_11_0_,
+        user0_.name as name7_11_0_,
+        user0_.password as password8_11_0_,
+        user0_.provider as provider9_11_0_,
+        user0_.provider_id as provide10_11_0_ 
+    from
+        users user0_ 
+    where
+        user0_.user_id=?
+2021-02-05 | 19:34:30.204 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [BIGINT] - [2]
+2021-02-05 | 19:34:30.342 | http-nio-8080-exec-3 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        userrefres0_.user_refresh_token_id as user_ref1_10_,
+        userrefres0_.created_date_time as created_2_10_,
+        userrefres0_.updated_date_time as updated_3_10_,
+        userrefres0_.refresh_token as refresh_4_10_,
+        userrefres0_.user_id as user_id5_10_ 
+    from
+        user_refresh_token userrefres0_ 
+    where
+        userrefres0_.user_id=?
+2021-02-05 | 19:34:30.342 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [BIGINT] - [2]
+2021-02-05 | 19:34:30.401 | http-nio-8080-exec-3 | DEBUG | org.hibernate.SQL         | ID:          | 
+    update
+        user_refresh_token 
+    set
+        updated_date_time=?,
+        refresh_token=?,
+        user_id=? 
+    where
+        user_refresh_token_id=?
+2021-02-05 | 19:34:30.402 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [TIMESTAMP] - [2021-02-05T19:34:30.390]
+2021-02-05 | 19:34:30.402 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [2] as [VARCHAR] - [eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwidHlwZSI6InJlZnJlc2giLCJpYXQiOjE2MTI1MjEyNzAsImV4cCI6MTYxMzM4NTI3MH0.XhYmDZINl2polQ49phNOJNGTORZ3X3z3sXCSkfL2cBVDI57AgUlTQU4X6mP89gADpr22Taogb5ceaZsBkdo15Q]
+2021-02-05 | 19:34:30.402 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [3] as [BIGINT] - [2]
+2021-02-05 | 19:34:30.402 | http-nio-8080-exec-3 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [4] as [BIGINT] - [2]
+2021-02-05 | 19:34:30.426 | http-nio-8080-exec-4 | DEBUG | TokenAuthenticationFilter | ID:          | TokenAuthenticationFilter 호출됨
+2021-02-05 | 19:34:30.427 | http-nio-8080-exec-4 | DEBUG | TokenAuthenticationFilter | ID:          | RequestURI : /oauth2/redirect
+2021-02-05 | 19:34:30.427 | http-nio-8080-exec-4 | DEBUG | TokenAuthenticationFilter | ID:          | TokenAuthenticationFilter 통과
+2021-02-05 | 19:34:30.442 | http-nio-8080-exec-4 | ERROR | tAuthenticationEntryPoint | ID:          | Responding with unauthorized error. Message - Full authentication is required to access this resource
+2021-02-05 | 19:34:42.316 | http-nio-8080-exec-6 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        user0_.user_id as user_id1_11_,
+        user0_.created_date_time as created_2_11_,
+        user0_.updated_date_time as updated_3_11_,
+        user0_.email as email4_11_,
+        user0_.email_verified as email_ve5_11_,
+        user0_.image_url as image_ur6_11_,
+        user0_.name as name7_11_,
+        user0_.password as password8_11_,
+        user0_.provider as provider9_11_,
+        user0_.provider_id as provide10_11_ 
+    from
+        users user0_ 
+    where
+        user0_.provider=? 
+        and user0_.provider_id=?
+2021-02-05 | 19:34:42.320 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [VARCHAR] - [kakao]
+2021-02-05 | 19:34:42.321 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [2] as [VARCHAR] - [1616111746]
+2021-02-05 | 19:34:42.326 | http-nio-8080-exec-6 | DEBUG | henticationSuccessHandler | ID:          | OAuth2AuthenticationSuccessHandler 호출 됨
+2021-02-05 | 19:34:42.331 | http-nio-8080-exec-6 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        user0_.user_id as user_id1_11_0_,
+        user0_.created_date_time as created_2_11_0_,
+        user0_.updated_date_time as updated_3_11_0_,
+        user0_.email as email4_11_0_,
+        user0_.email_verified as email_ve5_11_0_,
+        user0_.image_url as image_ur6_11_0_,
+        user0_.name as name7_11_0_,
+        user0_.password as password8_11_0_,
+        user0_.provider as provider9_11_0_,
+        user0_.provider_id as provide10_11_0_ 
+    from
+        users user0_ 
+    where
+        user0_.user_id=?
+2021-02-05 | 19:34:42.331 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [BIGINT] - [2]
+2021-02-05 | 19:34:42.339 | http-nio-8080-exec-6 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        userrefres0_.user_refresh_token_id as user_ref1_10_,
+        userrefres0_.created_date_time as created_2_10_,
+        userrefres0_.updated_date_time as updated_3_10_,
+        userrefres0_.refresh_token as refresh_4_10_,
+        userrefres0_.user_id as user_id5_10_ 
+    from
+        user_refresh_token userrefres0_ 
+    where
+        userrefres0_.user_id=?
+2021-02-05 | 19:34:42.339 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [BIGINT] - [2]
+2021-02-05 | 19:34:42.346 | http-nio-8080-exec-6 | DEBUG | org.hibernate.SQL         | ID:          | 
+    update
+        user_refresh_token 
+    set
+        updated_date_time=?,
+        refresh_token=?,
+        user_id=? 
+    where
+        user_refresh_token_id=?
+2021-02-05 | 19:34:42.347 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [TIMESTAMP] - [2021-02-05T19:34:42.346]
+2021-02-05 | 19:34:42.347 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [2] as [VARCHAR] - [eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwidHlwZSI6InJlZnJlc2giLCJpYXQiOjE2MTI1MjEyODIsImV4cCI6MTYxMzM4NTI4Mn0.8PVElFKI47W-g0GTWAtG9Vs0sLCCu6H2KjEU3Mq1z6cQavF2UF2pXuYQZds8xQenmTfH8D_AN-hRCPCXn07ZCw]
+2021-02-05 | 19:34:42.347 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [3] as [BIGINT] - [2]
+2021-02-05 | 19:34:42.347 | http-nio-8080-exec-6 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [4] as [BIGINT] - [2]
+2021-02-05 | 19:34:42.368 | http-nio-8080-exec-7 | DEBUG | TokenAuthenticationFilter | ID:          | TokenAuthenticationFilter 호출됨
+2021-02-05 | 19:34:42.368 | http-nio-8080-exec-7 | DEBUG | TokenAuthenticationFilter | ID:          | RequestURI : /oauth2/redirect
+2021-02-05 | 19:34:42.368 | http-nio-8080-exec-7 | DEBUG | TokenAuthenticationFilter | ID:          | TokenAuthenticationFilter 통과
+2021-02-05 | 19:34:42.368 | http-nio-8080-exec-7 | ERROR | tAuthenticationEntryPoint | ID:          | Responding with unauthorized error. Message - Full authentication is required to access this resource
+2021-02-05 | 19:35:51.277 | gContextShutdownHook |  INFO | .c.ThreadPoolTaskExecutor | ID:          | Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-05 | 19:35:51.284 | gContextShutdownHook |  INFO | rEntityManagerFactoryBean | ID:          | Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-05 | 19:35:51.288 | gContextShutdownHook |  INFO | c.z.h.HikariDataSource    | ID:          | HikariPool-1 - Shutdown initiated...
+2021-02-05 | 19:35:51.290 | gContextShutdownHook |  INFO | c.z.h.HikariDataSource    | ID:          | HikariPool-1 - Shutdown completed.
+2021-02-05 | 19:36:13.376 | background-preinit   |  INFO | o.h.v.i.util.Version      | ID:          | HV000001: Hibernate Validator 6.0.20.Final
+2021-02-05 | 19:36:13.410 | restartedMain        |  INFO | c.swm.sprint1.Application | ID:          | Starting Application on yeongsamnoui-MacBookPro.local with PID 7059 (/Users/YT/Desktop/project/momelet/backend/spring/build/classes/java/main started by YT in /Users/YT/Desktop/project/momelet/backend/spring)
+2021-02-05 | 19:36:13.410 | restartedMain        | DEBUG | c.swm.sprint1.Application | ID:          | Running with Spring Boot v2.2.10.RELEASE, Spring v5.2.9.RELEASE
+2021-02-05 | 19:36:13.411 | restartedMain        |  INFO | c.swm.sprint1.Application | ID:          | The following profiles are active: jwt,oauth,aws,dev,dev-db
+2021-02-05 | 19:36:13.450 | restartedMain        |  INFO | ertyDefaultsPostProcessor | ID:          | Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-05 | 19:36:13.450 | restartedMain        |  INFO | ertyDefaultsPostProcessor | ID:          | For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-05 | 19:36:14.384 | restartedMain        |  INFO | toryConfigurationDelegate | ID:          | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-05 | 19:36:14.471 | restartedMain        |  INFO | toryConfigurationDelegate | ID:          | Finished Spring Data repository scanning in 82ms. Found 11 JPA repository interfaces.
+2021-02-05 | 19:36:14.720 | restartedMain        |  INFO | $BeanPostProcessorChecker | ID:          | Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3cb2dda6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-05 | 19:36:14.727 | restartedMain        |  INFO | $BeanPostProcessorChecker | ID:          | Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-05 | 19:36:14.981 | restartedMain        |  INFO | s.b.w.e.t.TomcatWebServer | ID:          | Tomcat initialized with port(s): 8080 (http)
+2021-02-05 | 19:36:14.988 | restartedMain        |  INFO | o.a.c.h.Http11NioProtocol | ID:          | Initializing ProtocolHandler ["http-nio-8080"]
+2021-02-05 | 19:36:14.989 | restartedMain        |  INFO | o.a.c.c.StandardService   | ID:          | Starting service [Tomcat]
+2021-02-05 | 19:36:14.989 | restartedMain        |  INFO | o.a.c.core.StandardEngine | ID:          | Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-02-05 | 19:36:15.113 | restartedMain        |  INFO | o.a.c.c.C.[.[.[/]         | ID:          | Initializing Spring embedded WebApplicationContext
+2021-02-05 | 19:36:15.113 | restartedMain        |  INFO | bServerApplicationContext | ID:          | Root WebApplicationContext: initialization completed in 1663 ms
+2021-02-05 | 19:36:15.285 | restartedMain        |  WARN | ation$JpaWebConfiguration | ID:          | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-05 | 19:36:15.379 | restartedMain        |  INFO | o.h.j.i.util.LogHelper    | ID:          | HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-05 | 19:36:15.410 | restartedMain        |  INFO | org.hibernate.Version     | ID:          | HHH000412: Hibernate ORM core version 5.4.21.Final
+2021-02-05 | 19:36:15.503 | restartedMain        |  INFO | o.h.a.common.Version      | ID:          | HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-05 | 19:36:15.574 | restartedMain        |  INFO | c.z.h.HikariDataSource    | ID:          | HikariPool-1 - Starting...
+2021-02-05 | 19:36:15.986 | restartedMain        |  INFO | c.z.h.HikariDataSource    | ID:          | HikariPool-1 - Start completed.
+2021-02-05 | 19:36:15.998 | restartedMain        |  INFO | o.h.dialect.Dialect       | ID:          | HHH000400: Using dialect: com.swm.sprint1.config.MysqlCustomDialect
+2021-02-05 | 19:36:16.793 | restartedMain        |  INFO | .p.i.JtaPlatformInitiator | ID:          | HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-05 | 19:36:16.800 | restartedMain        |  INFO | rEntityManagerFactoryBean | ID:          | Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-05 | 19:36:17.400 | restartedMain        | DEBUG | TokenAuthenticationFilter | ID:          | Filter 'tokenAuthenticationFilter' configured for use
+2021-02-05 | 19:36:17.438 | restartedMain        |  INFO | .OptionalLiveReloadServer | ID:          | LiveReload server is running on port 35729
+2021-02-05 | 19:36:18.130 | restartedMain        |  INFO | e.w.EndpointLinksResolver | ID:          | Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-02-05 | 19:36:18.306 | restartedMain        |  INFO | WelcomePageHandlerMapping | ID:          | Adding welcome page template: index
+2021-02-05 | 19:36:18.363 | restartedMain        |  INFO | efaultSecurityFilterChain | ID:          | Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51ef01f3, org.springframework.security.web.context.SecurityContextPersistenceFilter@31def05, org.springframework.security.web.header.HeaderWriterFilter@19df1e1e, org.springframework.web.filter.CorsFilter@7f9d5770, org.springframework.security.web.authentication.logout.LogoutFilter@109af61b, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@7077095a, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@288e4049, com.swm.sprint1.security.TokenAuthenticationFilter@6e5b4727, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@150489a6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6580b3de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ccea3d6, org.springframework.security.web.session.SessionManagementFilter@568eb021, org.springframework.security.web.access.ExceptionTranslationFilter@58648b5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@326b5db4]
+2021-02-05 | 19:36:18.431 | restartedMain        |  INFO | .c.ThreadPoolTaskExecutor | ID:          | Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-05 | 19:36:18.639 | restartedMain        |  INFO | tationPluginsBootstrapper | ID:          | Context refreshed
+2021-02-05 | 19:36:18.647 | restartedMain        |  INFO | tationPluginsBootstrapper | ID:          | Found 1 custom documentation plugin(s)
+2021-02-05 | 19:36:18.655 | restartedMain        |  INFO | piListingReferenceScanner | ID:          | Scanning for api listing references
+2021-02-05 | 19:36:18.778 | restartedMain        |  INFO | ingOperationNameGenerator | ID:          | Generating unique operation named: getRestaurantUsingGET_1
+2021-02-05 | 19:36:18.841 | restartedMain        |  INFO | o.a.c.h.Http11NioProtocol | ID:          | Starting ProtocolHandler ["http-nio-8080"]
+2021-02-05 | 19:36:18.862 | restartedMain        |  INFO | s.b.w.e.t.TomcatWebServer | ID:          | Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-05 | 19:36:18.864 | restartedMain        |  INFO | c.swm.sprint1.Application | ID:          | Started Application in 5.845 seconds (JVM running for 6.403)
+2021-02-05 | 19:36:22.730 | http-nio-8080-exec-1 |  INFO | o.a.c.c.C.[.[.[/]         | ID:          | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-05 | 19:36:22.730 | http-nio-8080-exec-1 |  INFO | o.s.w.s.DispatcherServlet | ID:          | Initializing Servlet 'dispatcherServlet'
+2021-02-05 | 19:36:22.737 | http-nio-8080-exec-1 |  INFO | o.s.w.s.DispatcherServlet | ID:          | Completed initialization in 7 ms
+2021-02-05 | 19:36:23.848 | http-nio-8080-exec-2 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        user0_.user_id as user_id1_11_,
+        user0_.created_date_time as created_2_11_,
+        user0_.updated_date_time as updated_3_11_,
+        user0_.email as email4_11_,
+        user0_.email_verified as email_ve5_11_,
+        user0_.image_url as image_ur6_11_,
+        user0_.name as name7_11_,
+        user0_.password as password8_11_,
+        user0_.provider as provider9_11_,
+        user0_.provider_id as provide10_11_ 
+    from
+        users user0_ 
+    where
+        user0_.provider=? 
+        and user0_.provider_id=?
+2021-02-05 | 19:36:23.859 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [VARCHAR] - [naver]
+2021-02-05 | 19:36:23.859 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [2] as [VARCHAR] - [49296700]
+2021-02-05 | 19:36:23.891 | http-nio-8080-exec-2 | DEBUG | henticationSuccessHandler | ID:          | OAuth2AuthenticationSuccessHandler 호출 됨
+2021-02-05 | 19:36:23.915 | http-nio-8080-exec-2 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        user0_.user_id as user_id1_11_0_,
+        user0_.created_date_time as created_2_11_0_,
+        user0_.updated_date_time as updated_3_11_0_,
+        user0_.email as email4_11_0_,
+        user0_.email_verified as email_ve5_11_0_,
+        user0_.image_url as image_ur6_11_0_,
+        user0_.name as name7_11_0_,
+        user0_.password as password8_11_0_,
+        user0_.provider as provider9_11_0_,
+        user0_.provider_id as provide10_11_0_ 
+    from
+        users user0_ 
+    where
+        user0_.user_id=?
+2021-02-05 | 19:36:23.916 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [BIGINT] - [3]
+2021-02-05 | 19:36:24.026 | http-nio-8080-exec-2 | DEBUG | org.hibernate.SQL         | ID:          | 
+    select
+        userrefres0_.user_refresh_token_id as user_ref1_10_,
+        userrefres0_.created_date_time as created_2_10_,
+        userrefres0_.updated_date_time as updated_3_10_,
+        userrefres0_.refresh_token as refresh_4_10_,
+        userrefres0_.user_id as user_id5_10_ 
+    from
+        user_refresh_token userrefres0_ 
+    where
+        userrefres0_.user_id=?
+2021-02-05 | 19:36:24.026 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [BIGINT] - [3]
+2021-02-05 | 19:36:24.074 | http-nio-8080-exec-2 | DEBUG | org.hibernate.SQL         | ID:          | 
+    update
+        user_refresh_token 
+    set
+        updated_date_time=?,
+        refresh_token=?,
+        user_id=? 
+    where
+        user_refresh_token_id=?
+2021-02-05 | 19:36:24.075 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [1] as [TIMESTAMP] - [2021-02-05T19:36:24.065]
+2021-02-05 | 19:36:24.075 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [2] as [VARCHAR] - [eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwidHlwZSI6InJlZnJlc2giLCJpYXQiOjE2MTI1MjEzODQsImV4cCI6MTYxMzM4NTM4NH0.8z33TvOv0mNXkBzIcRUrJfBXUaNTjADU7RiyV25P4_dCDG8JQUqfLD0JOF_nEJ5w6IKKtZrS01mY6d0ll4jHEw]
+2021-02-05 | 19:36:24.075 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [3] as [BIGINT] - [3]
+2021-02-05 | 19:36:24.075 | http-nio-8080-exec-2 | TRACE | o.h.t.d.sql.BasicBinder   | ID:          | binding parameter [4] as [BIGINT] - [3]
+2021-02-05 | 19:36:24.099 | http-nio-8080-exec-3 | DEBUG | TokenAuthenticationFilter | ID:          | TokenAuthenticationFilter 호출됨
+2021-02-05 | 19:36:24.100 | http-nio-8080-exec-3 | DEBUG | TokenAuthenticationFilter | ID:          | RequestURI : /oauth2/redirect
+2021-02-05 | 19:36:24.100 | http-nio-8080-exec-3 | DEBUG | TokenAuthenticationFilter | ID:          | TokenAuthenticationFilter 통과
+2021-02-05 | 19:36:24.113 | http-nio-8080-exec-3 | ERROR | tAuthenticationEntryPoint | ID:          | Responding with unauthorized error. Message - Full authentication is required to access this resource
+2021-02-05 | 19:37:33.956 | gContextShutdownHook |  INFO | .c.ThreadPoolTaskExecutor | ID:          | Shutting down ExecutorService 'applicationTaskExecutor'
