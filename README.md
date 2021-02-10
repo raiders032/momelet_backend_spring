@@ -25,3 +25,5 @@ Spring Boot로 개발한 REST API 서버의 소스코드.
 2. spring data jpa / jpa / hibernate / quesydsl
 3. CI/CD : docker, jenkins, codedeploy, s3
 4. 모니터링: spring actuator, prometheus, grafana
+
+cicd 테스트용 수정5
