@@ -116,16 +116,19 @@ docker-compose down
 
 ## OAuth 2.0
 
+* 구글, 네이버, 카카오 소셜 로그인을 지원합니다.
 * [수행과정 보기](https://github.com/raiders032/md/blob/master/Spring/security/Social-login/social-login.md)
 
 
 
 ## 모니터링
 
+* Spring Actuator, Prometheus, Grafana을 이용해 모니터링 시스템을 구축합니다.
 * [수행과정 보기](https://github.com/raiders032/md/blob/master/Spring/actuator/actuator.md)
 
 
 
 ## CICD
 
+* Git Hub, Jenkins, AWS CodeDeploy를 이용해 CICD 파이프 라인을 구축합니다. 
 * [수행과정 보기](https://github.com/raiders032/md/blob/master/CICD/Jenkins/Jenkins.md)
