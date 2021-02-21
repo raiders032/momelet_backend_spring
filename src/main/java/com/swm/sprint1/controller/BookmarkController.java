@@ -7,6 +7,8 @@ import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.BookmarkService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -19,22 +21,29 @@ import org.springframework.web.bind.annotation.*;
 public class BookmarkController {
 
     private final BookmarkService bookmarkService;
+    private final Logger logger = LoggerFactory.getLogger(BookmarkController.class);
 
     @ApiOperation(value = "북마크 생성", notes = "북마크를 생성합니다.")
     @PostMapping("/api/v1/bookmarks/restaurants/{restaurantId}")
-    public ResponseEntity<?> createBookmark(@CurrentUser UserPrincipal userPrincipal,
+    public ResponseEntity<?> createBookmark(@CurrentUser UserPrincipal currentUser,
                                             @PathVariable Long restaurantId){
-        bookmarkService.createBookmark(userPrincipal.getId(), restaurantId);
+        logger.debug("PostMapping /api/v1/bookmarks/restaurants/{restaurantId}");
+
+        bookmarkService.createBookmark(currentUser.getId(), restaurantId);
+
         ApiResponse response = new ApiResponse(true, "북마크 생성 완료");
         return ResponseEntity.ok(response);
     }
 
     @ApiOperation(value = "북마크 조회", notes = "북마크를 조회합니다.")
     @GetMapping("/api/v1/bookmarks")
-    public ResponseEntity<?> createBookmark(@CurrentUser UserPrincipal userPrincipal,
-                                            Pageable pageable,
-                                            @RequestParam(required = false, defaultValue = "id") String filter){
-        Page<BookmarkResponseDto> bookmarks = bookmarkService.findDtosByUserId(userPrincipal.getId(), filter, pageable);
+    public ResponseEntity<?> createBookmark(@CurrentUser UserPrincipal currentUser,
+                                            @RequestParam(required = false, defaultValue = "id") String filter,
+                                            Pageable pageable){
+        logger.debug("GetMapping /api/v1/bookmarks");
+
+        Page<BookmarkResponseDto> bookmarks = bookmarkService.findBookmarkResponseDtoByUserId(currentUser.getId(), filter, pageable);
+
         ApiResponse response = new ApiResponse(true, "북마크 조회 완료");
         response.putData("bookmarks", bookmarks);
         return ResponseEntity.ok(response);
@@ -42,9 +51,12 @@ public class BookmarkController {
 
     @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제합니다.")
     @DeleteMapping("/api/v1/bookmarks/restaurants/{restaurantId}")
-    public ResponseEntity<?> deleteBookmark(@CurrentUser UserPrincipal userPrincipal,
+    public ResponseEntity<?> deleteBookmark(@CurrentUser UserPrincipal currentUser,
                                             @PathVariable Long restaurantId){
-        bookmarkService.deleteBookmark(userPrincipal.getId(), restaurantId);
+        logger.debug("DeleteMapping /api/v1/bookmarks/restaurants/{restaurantId}");
+
+        bookmarkService.deleteBookmark(currentUser.getId(), restaurantId);
+
         ApiResponse response = new ApiResponse(true, "북마크 삭제 완료");
         return ResponseEntity.ok(response);
     }
