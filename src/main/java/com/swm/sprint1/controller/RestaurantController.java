@@ -46,15 +46,17 @@ public class RestaurantController {
                                                            @RequestParam @DecimalMin("32") @DecimalMax("43")BigDecimal latitude,
                                                            @RequestParam @DecimalMin("0.001") @DecimalMax("0.02") BigDecimal radius,
                                                            @PathVariable Long userId){
-        logger.debug("getRestaurantWithUserCategory 호출되었습니다.");
+        logger.debug("GetMapping /api/v1/restaurants/users/{userId}/categories");
+
         if(!userId.equals(userPrincipal.getId())) {
             logger.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
             throw new RequestParamException("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다. :" + userId, "103");
         }
+
         List<RestaurantResponseDto> restaurants = restaurantService.findDtosByUserCategory(userId, longitude, latitude, radius);
+
         ApiResponse response = new ApiResponse(true);
         response.putData("restaurants", restaurants);
-
         return ResponseEntity.ok(response);
     }
 
@@ -65,22 +67,28 @@ public class RestaurantController {
                                                                @RequestParam @NotNull @DecimalMin("123") @DecimalMax("133")BigDecimal longitude,
                                                                @RequestParam @DecimalMin("32") @DecimalMax("43")BigDecimal latitude,
                                                                @RequestParam @DecimalMin("0.001") @DecimalMax("0.02") BigDecimal radius){
-        logger.debug("getRestaurant7SimpleCategoryBased 호출되었습니다.");
+        logger.debug("GetMapping /api/v1/restaurants");
+
         List<Long> userIds = Arrays.stream(userId.split(",")).map(Long::parseLong).collect(Collectors.toList());
         List<Long> restaurantIds = new ArrayList<>();
+
         if(!restaurantId.isEmpty())
              restaurantIds.addAll(Arrays.stream(restaurantId.split(",")).map(Long::parseLong).collect(Collectors.toList()));
+
         List<RestaurantResponseDto> restaurants = restaurantService.findGameCards(userIds, restaurantIds, longitude, latitude, radius);
+
         ApiResponse response = new ApiResponse(true);
         response.putData("restaurants", restaurants);
-
         return ResponseEntity.ok(response);
     }
 
     @ApiOperation(value="식당 검색", notes = "식당을 검색합니다.")
     @GetMapping("/api/v1/restaurants/search")
     public ResponseEntity<?> getRestaurant(Pageable pageable, @Valid @ModelAttribute RestaurantSearchCondition condition){
+        logger.debug("GetMapping /api/v1/restaurants/search");
+
         Page<RestaurantResponseDto> restaurants = restaurantService.searchRestaurants(pageable, condition);
+
         ApiResponse response = new ApiResponse(true);
         response.putData("restaurants", restaurants);
         return ResponseEntity.ok(response);
@@ -89,9 +97,12 @@ public class RestaurantController {
     @ApiOperation(value="식당 조회", notes = "식당을 조회합니다.")
     @GetMapping("/api/v1/restaurants/{restaurantId}")
     public ResponseEntity<?> getRestaurant(@PathVariable Long restaurantId){
-        RestaurantResponseDto dto = restaurantService.findDtoById(restaurantId);
+        logger.debug("GetMapping /api/v1/restaurants/{restaurantId}");
+
+        RestaurantResponseDto restaurants = restaurantService.findDtoById(restaurantId);
+
         ApiResponse response = new ApiResponse(true);
-        response.putData("restaurant", dto);
+        response.putData("restaurant", restaurants);
         return ResponseEntity.ok(response);
     }
 }

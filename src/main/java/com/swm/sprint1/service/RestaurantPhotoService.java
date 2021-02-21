@@ -46,7 +46,7 @@ public class RestaurantPhotoService {
     }
 
 
-    public List<RestaurantPhotoResponseDto> findByRestaurantId(Long restaurantId) {
+    public List<RestaurantPhotoResponseDto> findDtoByRestaurantId(Long restaurantId) {
         return restaurantPhotoRepository.findDtoByRestaurantId(restaurantId);
     }
 
