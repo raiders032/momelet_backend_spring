@@ -43,8 +43,12 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        logger.debug("TokenAuthenticationFilter 호출됨");
-        logger.debug("RequestURI : " + request.getRequestURI());
+
+        if(!request.getRequestURI().equals("/actuator/prometheus")) {
+            logger.debug("TokenAuthenticationFilter 호출됨");
+            logger.debug("RequestURI : " + request.getRequestURI());
+        }
+
         try {
             String jwt = getJwtFromRequest(request);
             if (StringUtils.hasText(jwt)) {
