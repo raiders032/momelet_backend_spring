@@ -35,10 +35,10 @@ public class UserService {
     private String dir;
 
     @Transactional
-    public void updateUser(Long id, MultipartFile imageFile, String name, List<String> categoies) throws IOException {
-        logger.debug("updateUser 호출됨");
+    public void updateUser(Long id, MultipartFile imageFile, String name, List<String> categoryNames) throws IOException {
+
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id, "200"));
-        List<Category> categories = categoryRepository.findCategoryByCategoryName(categoies);
+        List<Category> categories = categoryRepository.findCategoryByCategoryName(categoryNames);
         String imageUrl;
 
         if(imageFile != null)

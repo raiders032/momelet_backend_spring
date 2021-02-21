@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -42,7 +41,7 @@ public class MenuService {
         menu.update(menuDto.getName(), menuDto.getPrice());
     }
 
-    public List<MenuResponseDto> getAllMenu(Long restaurantId) {
+    public List<MenuResponseDto> getMenu(Long restaurantId) {
         return menuRepository.findMenuResponseDto(restaurantId);
     }
 }
