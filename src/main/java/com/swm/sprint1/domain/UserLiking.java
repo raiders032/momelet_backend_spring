@@ -21,6 +21,10 @@ public class UserLiking extends DateEntity {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
+
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -29,10 +33,6 @@ public class UserLiking extends DateEntity {
 
     @Column(precision = 10, scale = 7, nullable = false)
     private BigDecimal userLatitude;
-
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

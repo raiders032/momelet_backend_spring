@@ -35,12 +35,13 @@ public class RestaurantService {
     }
 
     public List<RestaurantResponseDto> findGameCards(List<Long> userIds, List<Long> restaurantIds, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
-        logger.debug("findDtos 호출");
+        logger.debug("findGameCards 호출");
 
         Set<Long> restaurantIdsSet = new HashSet<>(restaurantIds);
         List<RestaurantResponseDto> restaurants = new ArrayList<>(restaurantRepository.findDtosById(new ArrayList<>(restaurantIdsSet)));
 
         if(restaurantIdsSet.size() < 7){
+            logger.debug("restaurantRepository.findDtos(userIds, latitude, longitude, radius, 50);");
             List<RestaurantResponseDto> dtos = restaurantRepository.findDtos(userIds, latitude, longitude, radius, 50);
             Iterator<RestaurantResponseDto> iterator = dtos.iterator();
 
@@ -51,8 +52,10 @@ public class RestaurantService {
                 restaurants.add(dto);
             }
         }
+
         if(restaurants.size() < 7 )
             throw new RestaurantLessThan7Exception("식당 카드가 7장 미만입니다.");
+
         return restaurants;
     }
 
