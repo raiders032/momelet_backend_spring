@@ -53,12 +53,10 @@ public class RestaurantService {
             List<RestaurantResponseDto> filteredCandidate = candidates.stream()
                     .filter(candidate -> !restaurants.contains(candidate))
                     .collect(Collectors.toList());
+            if(filteredCandidate.size() < 7 - restaurants.size())
+                throw new RestaurantLessThan7Exception("식당 카드가 7장 미만입니다.");
             Collections.shuffle(filteredCandidate);
             restaurants.addAll(filteredCandidate.subList(0, 7 - restaurants.size()));
-        }
-
-        if (restaurants.size() < 7) {
-            throw new RestaurantLessThan7Exception("식당 카드가 7장 미만입니다.");
         }
 
         return new ArrayList<>(restaurants);
