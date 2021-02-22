@@ -38,23 +38,27 @@ public class RestaurantController {
 
     @ApiOperation(value = "유저 카테고리 기반 식당 조회" , notes = "유저의 카테고리를 기반으로 하여 최대 100개의 주변 식당 목록을 반환합니다.")
     @GetMapping("/api/v1/restaurants/users/{userId}/categories")
-    public ResponseEntity<?> getRestaurantWithUserCategory(@CurrentUser UserPrincipal userPrincipal,
+    public ResponseEntity<?> getRestaurantWithUserCategory(@CurrentUser UserPrincipal currentUser,
                                                            @RequestParam @DecimalMin("122") @DecimalMax("133")BigDecimal longitude,
                                                            @RequestParam @DecimalMin("32") @DecimalMax("43")BigDecimal latitude,
                                                            @RequestParam @DecimalMin("0.001") @DecimalMax("0.02") BigDecimal radius,
                                                            @PathVariable Long userId){
         logger.debug("GetMapping /api/v1/restaurants/users/{userId}/categories");
 
-        if(!userId.equals(userPrincipal.getId())) {
-            logger.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
-            throw new RequestParamException("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다. :" + userId, "103");
-        }
+        validateUser(currentUser, userId);
 
         List<RestaurantResponseDto> restaurants = restaurantService.findDtosByUserCategory(userId, longitude, latitude, radius);
 
         ApiResponse response = new ApiResponse(true);
         response.putData("restaurants", restaurants);
         return ResponseEntity.ok(response);
+    }
+
+    private void validateUser(@CurrentUser UserPrincipal userPrincipal, @PathVariable Long userId) {
+        if(!userId.equals(userPrincipal.getId())) {
+            logger.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
+            throw new RequestParamException("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다. :" + userId, "103");
+        }
     }
 
     @ApiOperation(value = "유저들의 카테고리 기반 식당 카드 조회" , notes = "유저들 카테고리를 기반으로 주변 식당 목록을 반환합니다.")
