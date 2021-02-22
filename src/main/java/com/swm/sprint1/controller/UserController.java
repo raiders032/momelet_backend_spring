@@ -2,11 +2,9 @@ package com.swm.sprint1.controller;
 
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.RequestParamException;
-import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.request.UserLikingReqeust;
 import com.swm.sprint1.payload.response.ApiResponse;
 import com.swm.sprint1.payload.response.UserInfoDto;
-import com.swm.sprint1.repository.user.UserRepository;
 import com.swm.sprint1.security.CurrentUser;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.UserLikingService;
@@ -37,7 +35,6 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
     private final UserLikingService userLikingService;
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
