@@ -17,11 +17,7 @@ public interface RestaurantRepositoryCustom {
 
     Page<RestaurantResponseDto> searchRestaurantsOrderByDistance(Pageable pageable, RestaurantSearchCondition condition);
 
-    List<RestaurantResponseDto> findRestaurant7(BigDecimal latitude, BigDecimal longitude, BigDecimal radius, List<Long> ids);
-
-    List<RestaurantResponseDto> findDtosByUserCategory(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius);
-
-    List<RestaurantResponseDto> findDtos(List<Long> userIds, BigDecimal latitude, BigDecimal longitude, BigDecimal radius, Integer limit);
+    List<RestaurantResponseDto> findDtosByUserId(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius);
 
     List<RestaurantResponseDto> findDtosById(List<Long> restaurantIds);
 }

@@ -24,10 +24,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @PreAuthorize("hasRole('USER')")
 @Validated
@@ -69,15 +66,9 @@ public class RestaurantController {
                                                                @RequestParam @DecimalMin("0.001") @DecimalMax("0.02") BigDecimal radius){
         logger.debug("GetMapping /api/v1/restaurants");
 
-        List<Long> userIds = Arrays.stream(userId.split(",")).map(Long::parseLong).collect(Collectors.toList());
-        List<Long> restaurantIds = new ArrayList<>();
+        List<RestaurantResponseDto> restaurants = restaurantService.getGameCards(userId, restaurantId, longitude, latitude, radius);
 
-        if(!restaurantId.isEmpty())
-             restaurantIds.addAll(Arrays.stream(restaurantId.split(",")).map(Long::parseLong).collect(Collectors.toList()));
-
-        List<RestaurantResponseDto> restaurants = restaurantService.findGameCards(userIds, restaurantIds, longitude, latitude, radius);
-
-        ApiResponse response = new ApiResponse(true);
+        ApiResponse response = new ApiResponse();
         response.putData("restaurants", restaurants);
         return ResponseEntity.ok(response);
     }
