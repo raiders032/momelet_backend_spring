@@ -104,7 +104,6 @@ public class AppleController {
             user = userOptional.get();
         } else {
             logger.debug("신규 회원입니다.");
-            logger.debug(serviceResponse.getUser());
             user = registerNewUser(AuthProvider.apple, payload.getSub(), "이름을 변경 해주세요", payload.getEmail());
         }
 
