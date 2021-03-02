@@ -48,10 +48,8 @@ public class UserController {
         Map<String, Integer> categories = userService.findAllCategoryNameByUserId(user.getId());
 
         UserInfoDto userInfoDto = new UserInfoDto(user.getId(), user.getName(), user.getEmail(), user.getImageUrl(), categories);
-        ApiResponse response = new ApiResponse(true);
-        response.putData("userInfo", userInfoDto);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "유저의 정보를 반환", "userInfo", userInfoDto));
     }
 
     @ApiOperation(value = "유저 정보 수정")
@@ -71,8 +69,7 @@ public class UserController {
 
         userService.updateUser(id, imageFile, name, categories);
 
-        return ResponseEntity
-                .ok(new ApiResponse(true, "회원 정보 수정 완료"));
+        return ResponseEntity.ok(new ApiResponse(true, "회원 정보 수정 완료"));
     }
 
     @ApiOperation(value ="유저 의사표현 저장")
@@ -95,9 +92,7 @@ public class UserController {
 
         List<Long> userLikingId = userLikingService.saveUserLiking(currentUser.getId(), userLikingReqeust);
 
-        ApiResponse apiResponse = new ApiResponse(true, "유저 의사 표현 저장 완료");
-        apiResponse.putData("userLikingId", userLikingId);
-        return ResponseEntity.created(null).body(apiResponse);
+        return ResponseEntity.ok(new ApiResponse(true, "유저 의사 표현 저장 완료", "userLikingId", userLikingId));
     }
 
 }

@@ -31,8 +31,7 @@ public class BookmarkController {
 
         bookmarkService.createBookmark(currentUser.getId(), restaurantId);
 
-        ApiResponse response = new ApiResponse(true, "북마크 생성 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "북마크 생성 완료"));
     }
 
     @ApiOperation(value = "북마크 조회", notes = "북마크를 조회합니다.")
@@ -44,9 +43,7 @@ public class BookmarkController {
 
         Page<BookmarkResponseDto> bookmarks = bookmarkService.findBookmarkResponseDtoByUserId(currentUser.getId(), filter, pageable);
 
-        ApiResponse response = new ApiResponse(true, "북마크 조회 완료");
-        response.putData("bookmarks", bookmarks);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "북마크 조회 완료", "bookmarks", bookmarks));
     }
 
     @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제합니다.")
@@ -57,7 +54,6 @@ public class BookmarkController {
 
         bookmarkService.deleteBookmark(currentUser.getId(), restaurantId);
 
-        ApiResponse response = new ApiResponse(true, "북마크 삭제 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "북마크 삭제 완료"));
     }
 }

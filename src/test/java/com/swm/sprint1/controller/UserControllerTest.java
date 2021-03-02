@@ -382,7 +382,7 @@ public class UserControllerTest {
                         .header("Authorization", "Bearer " + accessToken));
         //then
         MvcResult mvcResult = resultActions
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value("true"))
                 .andReturn();
 

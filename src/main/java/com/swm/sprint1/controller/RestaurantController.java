@@ -49,12 +49,10 @@ public class RestaurantController {
 
         List<RestaurantResponseDto> restaurants = restaurantService.findDtosByUserCategory(userId, longitude, latitude, radius);
 
-        ApiResponse response = new ApiResponse(true);
-        response.putData("restaurants", restaurants);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "유저 카테고리 기반 식당 조회", "restaurants", restaurants));
     }
 
-    private void validateUser(@CurrentUser UserPrincipal userPrincipal, @PathVariable Long userId) {
+    private void validateUser(@CurrentUser UserPrincipal userPrincipal, Long userId) {
         if(!userId.equals(userPrincipal.getId())) {
             logger.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
             throw new RequestParamException("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다. :" + userId, "103");
@@ -72,9 +70,7 @@ public class RestaurantController {
 
         List<RestaurantResponseDto> restaurants = restaurantService.getGameCards(userId, restaurantId, longitude, latitude, radius);
 
-        ApiResponse response = new ApiResponse();
-        response.putData("restaurants", restaurants);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "유저들의 카테고리 기반 식당 카드 조회", "restaurants", restaurants));
     }
 
     @ApiOperation(value="식당 검색", notes = "식당을 검색합니다.")
@@ -84,9 +80,7 @@ public class RestaurantController {
 
         Page<RestaurantResponseDto> restaurants = restaurantService.searchRestaurants(pageable, condition);
 
-        ApiResponse response = new ApiResponse(true);
-        response.putData("restaurants", restaurants);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 검색", "restaurants", restaurants));
     }
 
     @ApiOperation(value="식당 조회", notes = "식당을 조회합니다.")
@@ -94,10 +88,8 @@ public class RestaurantController {
     public ResponseEntity<?> getRestaurant(@PathVariable Long restaurantId){
         logger.debug("GetMapping /api/v1/restaurants/{restaurantId}");
 
-        RestaurantResponseDto restaurants = restaurantService.findDtoById(restaurantId);
+        RestaurantResponseDto restaurant = restaurantService.findDtoById(restaurantId);
 
-        ApiResponse response = new ApiResponse(true);
-        response.putData("restaurant", restaurants);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 조회", "restaurant", restaurant));
     }
 }

@@ -7,23 +7,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-@Builder
 @Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class ApiResponse{
+public class ApiResponse {
     private String dateTime;
     private boolean success;
     private String errorCode;
     private String message;
     private String detail;
-    private Map<String,Object> data = new HashMap<>();
-
-    public ApiResponse(boolean success) {
-        this.dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        this.success = success;
-    }
+    private Map<String, Object> data = new HashMap<>();
 
     public ApiResponse(boolean success, String message) {
         this.dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -31,21 +23,21 @@ public class ApiResponse{
         this.message = message;
     }
 
-    public ApiResponse(boolean success, String message, String detail) {
+    public ApiResponse(boolean success, String message, String dataName, Object data) {
         this.dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.success = success;
         this.message = message;
-        this.detail = detail;
+        this.putData(dataName, data);
     }
 
-    public ApiResponse(boolean success, String errorCode, String message, String detail) {
+    public ApiResponse(boolean success, String errorCode, String message) {
+        this.dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.success = success;
         this.errorCode = errorCode;
         this.message = message;
-        this.detail = detail;
     }
 
-    public void putData(String key, Object value){
+    private void putData(String key, Object value) {
         this.data.put(key, value);
     }
 }

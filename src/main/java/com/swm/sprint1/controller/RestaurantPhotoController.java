@@ -35,8 +35,7 @@ public class RestaurantPhotoController {
 
         restaurantPhotoService.createPhoto(currentUser.getId(), restaurantId, imageFile);
 
-        ApiResponse response = new ApiResponse(true, "식당 사진 저장 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 사진 저장 완료"));
     }
 
     @ApiOperation(value = "식당 사진 조회", notes = "식당 사진을 조회합니다.")
@@ -46,9 +45,7 @@ public class RestaurantPhotoController {
 
         List<RestaurantPhotoResponseDto> photos = restaurantPhotoService.findDtoByRestaurantId(restaurantId);
 
-        ApiResponse response = new ApiResponse(true, "식당 사진 조회 완료");
-        response.putData("photos", photos);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 사진 조회 완료", "photos", photos));
     }
 
     @ApiOperation(value = "식당 사진 삭제", notes = "식당 사진을 삭제합니다.")
@@ -59,7 +56,6 @@ public class RestaurantPhotoController {
 
         restaurantPhotoService.deletePhoto(currentUser.getId(), photoId);
 
-        ApiResponse response = new ApiResponse(true, "식당 사진 삭제 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 사진 삭제 완료"));
     }
 }
