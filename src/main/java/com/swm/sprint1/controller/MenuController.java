@@ -32,8 +32,7 @@ public class MenuController {
 
         menuService.createMenu(restaurantId, newMenu);
 
-        ApiResponse response = new ApiResponse(true, "식당 메뉴 추가 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 메뉴 추가 완료"));
     }
 
     @ApiOperation(value="식당 메뉴 조회", notes="해당 식당의 메뉴를 조회합니다.")
@@ -43,9 +42,7 @@ public class MenuController {
 
         List<MenuResponseDto> menu = menuService.getMenu(restaurantId);
 
-        ApiResponse response = new ApiResponse(true, "식당 메뉴 조회 완료");
-        response.putData("menu", menu);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 메뉴 조회 완료", "menu", menu));
     }
 
     @ApiOperation(value="식당 메뉴 수정", notes="해당 식당의 메뉴를 수정합니다.")
@@ -57,8 +54,7 @@ public class MenuController {
 
         menuService.updateMenu(restaurantId, menuId, newMenu);
 
-        ApiResponse response = new ApiResponse(true, "식당 메뉴 수정 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 메뉴 수정 완료"));
     }
 
     @ApiOperation(value = "식당 메뉴 삭제", notes = "해당 식당의 메뉴를 삭제합니다.")
@@ -69,8 +65,7 @@ public class MenuController {
 
         menuService.deleteMenu(restaurantId, menuId);
 
-        ApiResponse response = new ApiResponse(true, "식당 메뉴 삭제 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 메뉴 삭제 완료"));
     }
 
 }

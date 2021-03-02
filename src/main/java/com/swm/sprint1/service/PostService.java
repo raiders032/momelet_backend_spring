@@ -6,6 +6,7 @@ import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.NotSupportedExtension;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.response.PostResponseDto;
+import com.swm.sprint1.repository.post.PostDtoRepository;
 import com.swm.sprint1.repository.post.PostRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import com.swm.sprint1.repository.user.UserRepository;
@@ -30,6 +31,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final PostDtoRepository postDtoRepository;
     private final S3Uploader s3Uploader;
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
@@ -55,7 +57,7 @@ public class PostService {
     }
 
     public Page<PostResponseDto> getPost(Pageable pageable) {
-        return postRepository.findAllPostResponseDto(pageable);
+        return postDtoRepository.findAllPostResponseDto(pageable);
     }
 
     public String uploadImageFile(MultipartFile imageFile) throws IOException {

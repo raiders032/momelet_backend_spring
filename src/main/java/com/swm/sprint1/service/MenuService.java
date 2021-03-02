@@ -5,6 +5,7 @@ import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.response.MenuDto;
 import com.swm.sprint1.payload.response.MenuResponseDto;
+import com.swm.sprint1.repository.menu.MenuDtoRepository;
 import com.swm.sprint1.repository.menu.MenuRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MenuService {
 
     private final MenuRepository menuRepository;
+    private final MenuDtoRepository menuDtoRepository;
     private final RestaurantRepository restaurantRepository;
 
     @Transactional
@@ -42,6 +44,6 @@ public class MenuService {
     }
 
     public List<MenuResponseDto> getMenu(Long restaurantId) {
-        return menuRepository.findMenuResponseDto(restaurantId);
+        return menuDtoRepository.findMenuResponseDto(restaurantId);
     }
 }

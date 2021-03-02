@@ -1,18 +1,17 @@
 package com.swm.sprint1.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.swm.sprint1.domain.*;
+import com.swm.sprint1.domain.Admin;
+import com.swm.sprint1.domain.Menu;
+import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.AuthResponse;
 import com.swm.sprint1.payload.response.MenuDto;
 import com.swm.sprint1.payload.response.MenuResponseDto;
 import com.swm.sprint1.repository.AdminRepository;
 import com.swm.sprint1.repository.menu.MenuRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
-import com.swm.sprint1.repository.user.UserRepository;
 import com.swm.sprint1.security.TokenProvider;
-import com.swm.sprint1.service.AuthService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,7 +26,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

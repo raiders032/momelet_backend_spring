@@ -39,8 +39,7 @@ public class PostController {
 
         postService.createPost(currentUser.getId(), restaurantId, imageFile, claim);
 
-        ApiResponse response = new ApiResponse(true, "식당 정보 수정 요청 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 정보 수정 요청 완료"));
     }
 
     @ApiOperation(value = "식당 정보 수정 요청 조회", notes = "식당 정보 수정 요청을 조회합니다.")
@@ -50,9 +49,7 @@ public class PostController {
 
         Page<PostResponseDto> posts = postService.getPost(pageable);
 
-        ApiResponse response = new ApiResponse(true, "식당 정보 수정 요청 조회 완료");
-        response.putData("posts", posts);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 정보 수정 요청 조회 완료", "posts", posts));
     }
 
     @ApiOperation(value = "식당 정보 수정 요청 삭제", notes = "식당 정보 수정 요청을 삭제합니다.")
@@ -62,8 +59,7 @@ public class PostController {
 
         postService.deletePost(postId);
 
-        ApiResponse response = new ApiResponse(true, "식당 정보 수정 요청 삭제 완료");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "식당 정보 수정 요청 삭제 완료"));
     }
 
 

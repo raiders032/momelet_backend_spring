@@ -5,6 +5,7 @@ import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.response.BookmarkResponseDto;
+import com.swm.sprint1.repository.bookmark.BookmarkDtoRepository;
 import com.swm.sprint1.repository.bookmark.BookmarkRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import com.swm.sprint1.repository.user.UserRepository;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
+    private final BookmarkDtoRepository bookmarkDtoRepository;
     private final UserRepository userRepository;
     private final RestaurantRepository restaurantRepository;
 
@@ -43,8 +45,8 @@ public class BookmarkService {
 
     public Page<BookmarkResponseDto> findBookmarkResponseDtoByUserId(Long userId, String filter, Pageable pageable) {
         if(filter.equals("like"))
-            return bookmarkRepository.findDtosByUserIdOrderByLike(userId, pageable);
-        return bookmarkRepository.findDtosByUserIdOrderById(userId, pageable);
+            return bookmarkDtoRepository.findAllByUserIdOrderByLike(userId, pageable);
+        return bookmarkDtoRepository.findAllByUserIdOrderById(userId, pageable);
     }
 }
 

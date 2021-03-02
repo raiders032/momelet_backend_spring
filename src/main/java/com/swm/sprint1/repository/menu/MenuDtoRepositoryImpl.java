@@ -10,7 +10,7 @@ import java.util.List;
 import static com.swm.sprint1.domain.QMenu.menu;
 
 @RequiredArgsConstructor
-public class MenuRepositoryImpl implements MenuRepositoryCustom{
+public class MenuDtoRepositoryImpl implements MenuDtoRepositoryCustom{
 
     private final JPAQueryFactory queryFactory;
 

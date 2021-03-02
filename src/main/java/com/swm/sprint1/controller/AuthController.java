@@ -46,9 +46,7 @@ public class AuthController {
 
         Token refreshedAccessToken = authService.refreshAccessToken(jwtDto);
 
-        ApiResponse response = new ApiResponse(true, "액세스 토큰 갱신 완료");
-        response.putData("accessToken", refreshedAccessToken);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "액세스 토큰 갱신 완료","accessToken", refreshedAccessToken ));
     }
 
     @ApiOperation(value = "액세스 토큰 & 리프레시 토큰 재발급", notes = "새로 갱신된 액세스 토큰과 리프레시 토큰을 발급합니다.")
@@ -63,9 +61,7 @@ public class AuthController {
 
         AuthResponse authResponse = authService.refreshAccessAndRefreshToken(jwtDto);
 
-        ApiResponse response = new ApiResponse(true, "액세스 & 리프레시 토큰 갱신 완료");
-        response.putData("tokens", authResponse);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse(true, "액세스 & 리프레시 토큰 갱신 완료","tokens", authResponse ));
     }
 
     @ApiOperation(value = "액세스 토큰 유효성 검사", notes = "토큰의 유효성을 검사하고 결과를 반환합니다.")

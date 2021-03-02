@@ -13,11 +13,4 @@ public interface RestaurantRepositoryCustom {
 
     List<Restaurant> findAllByIdOrderByIdAsc(List<Long> restaurantId);
 
-    Page<RestaurantResponseDto> searchRestaurantsOrderByLikeCount(Pageable pageable, RestaurantSearchCondition condition);
-
-    Page<RestaurantResponseDto> searchRestaurantsOrderByDistance(Pageable pageable, RestaurantSearchCondition condition);
-
-    List<RestaurantResponseDto> findDtosByUserId(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius);
-
-    List<RestaurantResponseDto> findDtosById(List<Long> restaurantIds);
 }
