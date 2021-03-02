@@ -6,6 +6,7 @@ import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.NotSupportedExtension;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.response.RestaurantPhotoResponseDto;
+import com.swm.sprint1.repository.photo.RestaurantPhotoDtoRepository;
 import com.swm.sprint1.repository.photo.RestaurantPhotoRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import com.swm.sprint1.repository.user.UserRepository;
@@ -28,6 +29,7 @@ import java.util.List;
 public class RestaurantPhotoService {
 
     private final RestaurantPhotoRepository restaurantPhotoRepository;
+    private final RestaurantPhotoDtoRepository restaurantPhotoDtoRepository;
     private final UserRepository userRepository;
     private final RestaurantRepository restaurantRepository;
     private final S3Uploader s3Uploader;
@@ -47,7 +49,7 @@ public class RestaurantPhotoService {
 
 
     public List<RestaurantPhotoResponseDto> findDtoByRestaurantId(Long restaurantId) {
-        return restaurantPhotoRepository.findDtoByRestaurantId(restaurantId);
+        return restaurantPhotoDtoRepository.findAllByRestaurantId(restaurantId);
     }
 
     public String uploadImageFile(MultipartFile imageFile) throws IOException {
