@@ -1,5 +1,7 @@
 ## Momelet
 >  Momelet은 다수와 식당 및 메뉴를 고민할 때 1분 30초 이내에 식당 및 메뉴 결정을 도와주는 서비스입니다.
+>
+>  시연 영상: https://youtu.be/jpG9aGxycZ4
 
 
 
