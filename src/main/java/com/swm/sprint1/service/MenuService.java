@@ -5,6 +5,7 @@ import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.payload.response.MenuDto;
 import com.swm.sprint1.payload.response.MenuResponseDto;
+import com.swm.sprint1.repository.menu.MenuDtoRepository;
 import com.swm.sprint1.repository.menu.MenuRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class MenuService {
 
     private final MenuRepository menuRepository;
+    private final MenuDtoRepository menuDtoRepository;
     private final RestaurantRepository restaurantRepository;
 
     @Transactional
@@ -42,7 +43,7 @@ public class MenuService {
         menu.update(menuDto.getName(), menuDto.getPrice());
     }
 
-    public List<MenuResponseDto> getAllMenu(Long restaurantId) {
-        return menuRepository.findMenuResponseDto(restaurantId);
+    public List<MenuResponseDto> getMenu(Long restaurantId) {
+        return menuDtoRepository.findMenuResponseDto(restaurantId);
     }
 }

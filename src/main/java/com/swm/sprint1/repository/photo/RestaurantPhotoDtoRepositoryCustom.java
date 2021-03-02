@@ -4,6 +4,6 @@ import com.swm.sprint1.payload.response.RestaurantPhotoResponseDto;
 
 import java.util.List;
 
-public interface RestaurantPhotoRepositoryCustom {
-    List<RestaurantPhotoResponseDto> findDtoByRestaurantId(Long restaurantId);
+public interface RestaurantPhotoDtoRepositoryCustom {
+    List<RestaurantPhotoResponseDto> findAllByRestaurantId(Long restaurantId);
 }

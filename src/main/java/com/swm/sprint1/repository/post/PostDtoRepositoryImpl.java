@@ -15,7 +15,7 @@ import java.util.List;
 import static com.swm.sprint1.domain.QPost.post;
 
 @RequiredArgsConstructor
-public class PostRepositoryImpl implements PostRepositoryCustom {
+public class PostDtoRepositoryImpl implements PostDtoRepositoryCustom{
 
     private final JPAQueryFactory queryFactory;
 

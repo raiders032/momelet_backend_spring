@@ -6,7 +6,7 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 RUN chmod +x ./gradlew
-RUN ./gradlew build -x test
+RUN ./gradlew build
 RUN mkdir -p build/dependency && (cd build/dependency; jar -xf ../libs/*.jar)
 
 FROM openjdk:8-jdk-alpine

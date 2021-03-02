@@ -31,35 +31,18 @@ public class UserService {
     private final S3Uploader s3Uploader;
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    @Value("${app.s3.profile.dir}")
-    private String dir;
-
     @Transactional
-    public void updateUser(Long id, MultipartFile imageFile, String name, List<String> categoies) throws IOException {
-        logger.debug("updateUser 호출됨");
+    public void updateUser(Long id, MultipartFile imageFile, String name, List<String> categoryNames) throws IOException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id, "200"));
-        List<Category> categories = categoryRepository.findCategoryByCategoryName(categoies);
+        List<Category> categories = categoryRepository.findCategoryByCategoryName(categoryNames);
         String imageUrl;
 
         if(imageFile != null)
-            imageUrl = uploadImageFile(imageFile);
+            imageUrl = s3Uploader.uploadImageFile(imageFile);
         else
             imageUrl = user.getImageUrl();
 
         user.updateUserInfo(name, imageUrl, categories);
-    }
-
-    public String uploadImageFile(MultipartFile imageFile) throws IOException {
-        logger.debug("uploadImageFile 호출됨");
-        String imageUrl;
-        String filename = imageFile.getOriginalFilename();
-        String extension = filename.substring(filename.lastIndexOf("."));
-        List<String> supportedExtension = Arrays.asList(".jpg", ".jpeg", ".png");
-        if(!supportedExtension.contains(extension)) {
-            throw new NotSupportedExtension(extension + "은 지원하지 않는 확장자입니다. jpg, jpeg, png만 지원합니다.");
-        }
-        imageUrl = s3Uploader.upload(imageFile, dir);
-        return s3Uploader.changeImageUrl(imageUrl, "_640x640");
     }
 
     public Map<String, Integer> findAllCategoryNameByUserId(Long id) {

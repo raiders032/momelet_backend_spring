@@ -4,6 +4,7 @@ import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.exception.RestaurantLessThan7Exception;
 import com.swm.sprint1.payload.request.RestaurantSearchCondition;
 import com.swm.sprint1.payload.response.RestaurantResponseDto;
+import com.swm.sprint1.repository.restaurant.RestaurantDtoRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -15,50 +16,61 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
+    private final RestaurantDtoRepository restaurantDtoRepository;
     private final Logger logger = LoggerFactory.getLogger(RestaurantService.class);
 
     public List<RestaurantResponseDto> findDtosByUserCategory(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
-        return restaurantRepository.findDtosByUserCategory(userId, longitude, latitude, radius);
+        return restaurantDtoRepository.findAllByUserId(userId, longitude, latitude, radius);
     }
 
     public Page<RestaurantResponseDto> searchRestaurants(Pageable pageable, RestaurantSearchCondition condition) {
-        if(condition.getFilter().equals("like")) {
-            return restaurantRepository.searchRestaurantsOrderByLikeCount(pageable, condition);
+        if (condition.getFilter().equals("like")) {
+            return restaurantDtoRepository.searchAllOrderByLikeCount(pageable, condition);
         }
-        return restaurantRepository.searchRestaurantsOrderByDistance(pageable, condition);
+
+        return restaurantDtoRepository.searchAllOrderByDistance(pageable, condition);
     }
 
-    public List<RestaurantResponseDto> findGameCards(List<Long> userIds, List<Long> restaurantIds, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
-        logger.debug("findDtos 호출");
+    public List<RestaurantResponseDto> getGameCards(String userId, String restaurantId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
+        logger.debug("findGameCards 호출");
 
-        Set<Long> restaurantIdsSet = new HashSet<>(restaurantIds);
-        List<RestaurantResponseDto> restaurants = new ArrayList<>(restaurantRepository.findDtosById(new ArrayList<>(restaurantIdsSet)));
+        List<Long> userIds = getSplitUserIds(userId);
+        Set<RestaurantResponseDto> restaurants = new HashSet<>();
 
-        if(restaurantIdsSet.size() < 7){
-            List<RestaurantResponseDto> dtos = restaurantRepository.findDtos(userIds, latitude, longitude, radius, 50);
-            Iterator<RestaurantResponseDto> iterator = dtos.iterator();
-
-            while(restaurants.size() < 7 && iterator.hasNext()){
-                RestaurantResponseDto dto = iterator.next();
-                if(restaurants.contains(dto))
-                    continue;
-                restaurants.add(dto);
-            }
+        if (!restaurantId.isEmpty()) {
+            Set<Long> restaurantIds = new HashSet<>(Arrays.stream(restaurantId.split(",")).map(Long::parseLong).collect(Collectors.toList()));
+            restaurants.addAll(restaurantDtoRepository.findAllById(new ArrayList<>(restaurantIds)));
         }
-        if(restaurants.size() < 7 )
-            throw new RestaurantLessThan7Exception("식당 카드가 7장 미만입니다.");
-        return restaurants;
+
+        if (restaurants.size() < 7) {
+            Set<RestaurantResponseDto> candidates = new HashSet<>();
+            userIds.forEach(id -> candidates.addAll(restaurantDtoRepository.findAllByUserId(id, longitude, latitude, radius)));
+            List<RestaurantResponseDto> filteredCandidate = candidates.stream()
+                    .filter(candidate -> !restaurants.contains(candidate))
+                    .collect(Collectors.toList());
+            if(filteredCandidate.size() < 7 - restaurants.size())
+                throw new RestaurantLessThan7Exception("식당 카드가 7장 미만입니다.");
+            Collections.shuffle(filteredCandidate);
+            restaurants.addAll(filteredCandidate.subList(0, 7 - restaurants.size()));
+        }
+
+        return new ArrayList<>(restaurants);
+    }
+
+    private List<Long> getSplitUserIds(String userIds) {
+        return Arrays.stream(userIds.split(",")).map(Long::parseLong).collect(Collectors.toList());
     }
 
     public RestaurantResponseDto findDtoById(Long restaurantId) {
-        List<RestaurantResponseDto> dtosById = restaurantRepository.findDtosById(Arrays.asList(restaurantId));
-        if(!dtosById.isEmpty())
+        List<RestaurantResponseDto> dtosById = restaurantDtoRepository.findAllById(Arrays.asList(restaurantId));
+        if (!dtosById.isEmpty())
             return dtosById.get(0);
         else
             throw new ResourceNotFoundException("Restaurant", "id", restaurantId, "210");

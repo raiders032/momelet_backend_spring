@@ -11,12 +11,12 @@ import java.util.List;
 import static com.swm.sprint1.domain.QRestaurantPhoto.restaurantPhoto;
 
 @RequiredArgsConstructor
-public class RestaurantPhotoRepositoryImpl implements RestaurantPhotoRepositoryCustom {
+public class RestaurantPhotoDtoRepositoryImpl implements RestaurantPhotoDtoRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<RestaurantPhotoResponseDto> findDtoByRestaurantId(Long restaurantId) {
+    public List<RestaurantPhotoResponseDto> findAllByRestaurantId(Long restaurantId) {
         return queryFactory
                 .select(Projections.fields(RestaurantPhotoResponseDto.class,
                         restaurantPhoto.id,

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface RestaurantPhotoRepository extends JpaRepository<RestaurantPhoto, Long>, RestaurantPhotoRepositoryCustom {
+public interface RestaurantPhotoRepository extends JpaRepository<RestaurantPhoto, Long> {
     Optional<RestaurantPhoto> findByUserIdAndId(Long userId, Long id);
 }
