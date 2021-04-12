@@ -1,8 +1,7 @@
 package com.swm.sprint1.controller;
 
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.MenuDto;
-import com.swm.sprint1.payload.response.MenuResponseDto;
+import com.swm.sprint1.dto.UserInfoDto;
+import com.swm.sprint1.dto.response.ApiResponse;
 import com.swm.sprint1.service.MenuService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class MenuController {
     @ApiOperation(value = "식당 메뉴 추가", notes = "해당 식당의 메뉴를 추가합니다.")
     @PostMapping("/api/v1/restaurants/{restaurantId}/menu")
     public ResponseEntity<?> createMenu(@PathVariable Long restaurantId,
-                                        @RequestBody MenuDto newMenu) {
+                                        @RequestBody com.swm.sprint1.dto.MenuDto newMenu) {
         log.debug("PostMapping /api/v1/restaurants/{restaurantId}/menu");
 
         menuService.createMenu(restaurantId, newMenu);
@@ -39,7 +38,7 @@ public class MenuController {
     public ResponseEntity<?> getMenu(@PathVariable Long restaurantId) {
         log.debug("GetMapping /api/v1/restaurants/{restaurantId}/menu");
 
-        List<MenuResponseDto> menu = menuService.getMenu(restaurantId);
+        List<UserInfoDto.MenuDto> menu = menuService.getMenu(restaurantId);
 
         return ResponseEntity.ok(new ApiResponse(true, "식당 메뉴 조회 완료", "menu", menu));
     }
@@ -48,7 +47,7 @@ public class MenuController {
     @PutMapping("/api/v1/restaurants/{restaurantId}/menu/{menuId}")
     public ResponseEntity<?> updateMenu(@PathVariable Long restaurantId,
                                         @PathVariable Long menuId,
-                                        @RequestBody MenuDto newMenu) {
+                                        @RequestBody com.swm.sprint1.dto.MenuDto newMenu) {
         log.debug("PutMapping /api/v1/restaurants/{restaurantId}/menu/{menuId}");
 
         menuService.updateMenu(restaurantId, menuId, newMenu);

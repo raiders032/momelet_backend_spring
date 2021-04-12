@@ -4,10 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swm.sprint1.domain.Admin;
 import com.swm.sprint1.domain.Menu;
 import com.swm.sprint1.domain.Restaurant;
+import com.swm.sprint1.dto.UserInfoDto;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.MenuDto;
-import com.swm.sprint1.payload.response.MenuResponseDto;
+import com.swm.sprint1.dto.response.ApiResponse;
 import com.swm.sprint1.repository.AdminRepository;
 import com.swm.sprint1.repository.menu.MenuRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
@@ -83,7 +82,7 @@ class MenuControllerTest {
         //given
         Long restaurantId = 1L;
         String uri = "/api/v1/restaurants/" + restaurantId + "/menu";
-        MenuDto menu1 = new MenuDto("menu1", 1000);
+        com.swm.sprint1.dto.MenuDto menu1 = new com.swm.sprint1.dto.MenuDto("menu1", 1000);
 
         String content = objectMapper.writeValueAsString(menu1);
 
@@ -132,7 +131,7 @@ class MenuControllerTest {
         Menu menu = new Menu(restaurant, "menu1", 10000, false);
         Menu save = menuRepository.save(menu);
         String uri = "/api/v1/restaurants/" + RestaurantId + "/menu/" + save.getId();
-        MenuDto menuDto = new MenuDto(name, price);
+        com.swm.sprint1.dto.MenuDto menuDto = new com.swm.sprint1.dto.MenuDto(name, price);
 
         String content = objectMapper.writeValueAsString(menuDto);
 
@@ -182,7 +181,7 @@ class MenuControllerTest {
         //then
         String contentAsString = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
         ApiResponse apiResponse = objectMapper.readValue(contentAsString, ApiResponse.class);
-        List<MenuResponseDto> menu = (List<MenuResponseDto>) apiResponse.getData().get("menu");
+        List<UserInfoDto.MenuDto> menu = (List<UserInfoDto.MenuDto>) apiResponse.getData().get("menu");
         assertThat(menu.size()).isEqualTo(3);
         assertThat(menu).extracting("name").containsOnly("menu1", "menu2", "menu3");
         assertThat(menu).extracting("price").containsOnly(10000, 20000, 30000);

@@ -3,15 +3,12 @@ package com.swm.sprint1.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swm.sprint1.domain.AuthProvider;
 import com.swm.sprint1.domain.User;
-import com.swm.sprint1.domain.UserRefreshToken;
-import com.swm.sprint1.payload.request.JwtDto;
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.AuthResponse;
+import com.swm.sprint1.dto.request.JwtRequest;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.response.AuthResponse;
 import com.swm.sprint1.repository.user.UserRefreshTokenRepository;
 import com.swm.sprint1.repository.user.UserRepository;
-import com.swm.sprint1.security.Token;
 import com.swm.sprint1.security.TokenProvider;
-import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.AuthService;
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -31,7 +27,6 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 
 import static java.lang.Thread.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -103,8 +98,8 @@ public class AuthControllerTest {
         //given
         sleep(1000);
         String uri = "/api/v1/auth/access-token";
-        JwtDto jwtDto = new JwtDto(refreshToken);
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(refreshToken);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         MvcResult result = mockMvc.perform(
@@ -130,8 +125,8 @@ public class AuthControllerTest {
         //given
         String uri = "/api/v1/auth/access-token";
         AuthResponse accessAndRefreshToken = authService.createAccessAndRefreshToken(user.getId(),0, 0);
-        JwtDto jwtDto = new JwtDto(accessAndRefreshToken.getRefreshToken().getJwtToken());
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(accessAndRefreshToken.getRefreshToken().getJwtToken());
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -150,8 +145,8 @@ public class AuthControllerTest {
         sleep(1000);
         authService.createAccessAndRefreshToken(user.getId());
         String uri = "/api/v1/auth/access-token";
-        JwtDto jwtDto = new JwtDto(refreshToken);
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(refreshToken);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -168,8 +163,8 @@ public class AuthControllerTest {
     public void 액세스_토큰_갱신_액세스_토큰_보내기_404() throws Exception {
         //given
         String uri = "/api/v1/auth/access-token";
-        JwtDto jwtDto = new JwtDto(accessToken);
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(accessToken);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -187,8 +182,8 @@ public class AuthControllerTest {
         //given
         sleep(1000);
         String uri = "/api/v1/auth/refresh-token";
-        JwtDto jwtDto = new JwtDto(refreshToken);
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(refreshToken);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         MvcResult result = mockMvc.perform(
@@ -220,8 +215,8 @@ public class AuthControllerTest {
         //given
         String uri = "/api/v1/auth/refresh-token";
         AuthResponse accessAndRefreshToken = authService.createAccessAndRefreshToken(user.getId(),0, 0);
-        JwtDto jwtDto = new JwtDto(accessAndRefreshToken.getRefreshToken().getJwtToken());
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(accessAndRefreshToken.getRefreshToken().getJwtToken());
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -240,8 +235,8 @@ public class AuthControllerTest {
         sleep(1000);
         authService.createAccessAndRefreshToken(user.getId());
         String uri = "/api/v1/auth/refresh-token";
-        JwtDto jwtDto = new JwtDto(refreshToken);
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(refreshToken);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -258,8 +253,8 @@ public class AuthControllerTest {
     public void 액세스_리프레시_토큰_갱신_액세스_토큰_보내기_404() throws Exception {
         //given
         String uri = "/api/v1/auth/refresh-token";
-        JwtDto jwtDto = new JwtDto(accessToken);
-        String content = objectMapper.writeValueAsString(jwtDto);
+        JwtRequest jwtRequest = new JwtRequest(accessToken);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -276,10 +271,10 @@ public class AuthControllerTest {
     public void 리프레시_토큰_검증() throws Exception {
         //given
         String uri = "/api/v1/auth/validation/refresh";
-        JwtDto jwtDto = JwtDto.builder()
+        JwtRequest jwtRequest = JwtRequest.builder()
                 .jwt(refreshToken)
                 .build();
-        String content = objectMapper.writeValueAsString(jwtDto);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -299,10 +294,10 @@ public class AuthControllerTest {
         sleep(1000);
         authService.createAccessAndRefreshToken(user.getId());
         String uri = "/api/v1/auth/validation/refresh";
-        JwtDto jwtDto = JwtDto.builder()
+        JwtRequest jwtRequest = JwtRequest.builder()
                 .jwt(refreshToken)
                 .build();
-        String content = objectMapper.writeValueAsString(jwtDto);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -322,10 +317,10 @@ public class AuthControllerTest {
     public void 리프레시_토큰_검증_액세스토큰보내기() throws Exception {
         //given
         String uri = "/api/v1/auth/validation/refresh";
-        JwtDto jwtDto = JwtDto.builder()
+        JwtRequest jwtRequest = JwtRequest.builder()
                 .jwt(accessToken)
                 .build();
-        String content = objectMapper.writeValueAsString(jwtDto);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -344,10 +339,10 @@ public class AuthControllerTest {
     public void 액세스_토큰_검증() throws Exception{
         //given
         String uri = "/api/v1/auth/validation/access";
-        JwtDto jwtDto = JwtDto.builder()
+        JwtRequest jwtRequest = JwtRequest.builder()
                 .jwt(accessToken)
                 .build();
-        String content = objectMapper.writeValueAsString(jwtDto);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -367,10 +362,10 @@ public class AuthControllerTest {
         sleep(1000);
         authService.createAccessAndRefreshToken(user.getId());
         String uri = "/api/v1/auth/validation/access";
-        JwtDto jwtDto = JwtDto.builder()
+        JwtRequest jwtRequest = JwtRequest.builder()
                 .jwt(accessToken)
                 .build();
-        String content = objectMapper.writeValueAsString(jwtDto);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)
@@ -389,10 +384,10 @@ public class AuthControllerTest {
     public void 액세스_토큰_검증_리프레시토큰보내기() throws Exception {
         //given
         String uri = "/api/v1/auth/validation/access";
-        JwtDto jwtDto = JwtDto.builder()
+        JwtRequest jwtRequest = JwtRequest.builder()
                 .jwt(refreshToken)
                 .build();
-        String content = objectMapper.writeValueAsString(jwtDto);
+        String content = objectMapper.writeValueAsString(jwtRequest);
 
         //when
         ResultActions result = mockMvc.perform(post(uri)

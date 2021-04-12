@@ -1,8 +1,8 @@
 package com.swm.sprint1.service;
 
 import com.swm.sprint1.domain.UserRefreshToken;
-import com.swm.sprint1.payload.request.JwtDto;
-import com.swm.sprint1.payload.response.AuthResponse;
+import com.swm.sprint1.dto.request.JwtRequest;
+import com.swm.sprint1.dto.response.AuthResponse;
 import com.swm.sprint1.repository.user.UserRefreshTokenRepository;
 import com.swm.sprint1.security.CustomUserDetailsService;
 import com.swm.sprint1.security.Token;
@@ -25,8 +25,8 @@ public class AuthService {
     private final CustomUserDetailsService customUserDetailsService;
     private final UserRefreshTokenRepository userRefreshTokenRepository;
 
-    public Token refreshAccessToken(JwtDto jwtDto) {
-        String refreshToken = jwtDto.getJwt();
+    public Token refreshAccessToken(JwtRequest jwtRequest) {
+        String refreshToken = jwtRequest.getJwt();
         final Long userId = tokenProvider.validateRefreshToken(refreshToken);
 
         UserDetails userDetails = customUserDetailsService.loadUserById(userId);
@@ -35,8 +35,8 @@ public class AuthService {
     }
 
     @Transactional
-    public AuthResponse refreshAccessAndRefreshToken(JwtDto jwtDto) {
-        String token = jwtDto.getJwt();
+    public AuthResponse refreshAccessAndRefreshToken(JwtRequest jwtRequest) {
+        String token = jwtRequest.getJwt();
         final Long userId = tokenProvider.validateRefreshToken(token);
 
         UserDetails userDetails = customUserDetailsService.loadUserById(userId);

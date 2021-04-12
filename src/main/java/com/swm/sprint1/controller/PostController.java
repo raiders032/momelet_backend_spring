@@ -1,7 +1,7 @@
 package com.swm.sprint1.controller;
 
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.PostResponseDto;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.PostDto;
 import com.swm.sprint1.security.CurrentUser;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.PostService;
@@ -46,7 +46,7 @@ public class PostController {
     public ResponseEntity<?> getPost(Pageable pageable) {
         log.debug("GetMapping /api/v1/posts");
 
-        Page<PostResponseDto> posts = postService.getPost(pageable);
+        Page<PostDto> posts = postService.getPost(pageable);
 
         return ResponseEntity.ok(new ApiResponse(true, "식당 정보 수정 요청 조회 완료", "posts", posts));
     }

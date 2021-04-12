@@ -4,7 +4,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.swm.sprint1.domain.Post;
-import com.swm.sprint1.payload.response.PostResponseDto;
+import com.swm.sprint1.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +20,10 @@ public class PostDtoRepositoryImpl implements PostDtoRepositoryCustom{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<PostResponseDto> findAllPostResponseDto(Pageable pageable) {
+    public Page<PostDto> findAllPostResponseDto(Pageable pageable) {
 
-        List<PostResponseDto> content = queryFactory
-                .select(Projections.fields(PostResponseDto.class, post.id, post.restaurant.id.as("restaurantId"), post.imageUrl, post.claim))
+        List<PostDto> content = queryFactory
+                .select(Projections.fields(PostDto.class, post.id, post.restaurant.id.as("restaurantId"), post.imageUrl, post.claim))
                 .from(post)
                 .orderBy(post.id.desc())
                 .offset(pageable.getOffset())

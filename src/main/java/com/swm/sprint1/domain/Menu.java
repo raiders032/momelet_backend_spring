@@ -1,7 +1,7 @@
 package com.swm.sprint1.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.swm.sprint1.payload.response.MenuDto;
+import com.swm.sprint1.dto.MenuDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

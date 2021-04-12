@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto;
 
 import com.swm.sprint1.domain.Menu;
 import lombok.AllArgsConstructor;

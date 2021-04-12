@@ -1,9 +1,9 @@
 package com.swm.sprint1.controller;
 
 import com.swm.sprint1.exception.RequestParamException;
-import com.swm.sprint1.payload.request.RestaurantSearchCondition;
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.RestaurantResponseDto;
+import com.swm.sprint1.dto.request.RestaurantSearchConditionRequest;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.RestaurantDto;
 import com.swm.sprint1.security.CurrentUser;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.RestaurantService;
@@ -45,7 +45,7 @@ public class RestaurantController {
 
         validateUser(currentUser, userId);
 
-        List<RestaurantResponseDto> restaurants = restaurantService.findDtosByUserCategory(userId, longitude, latitude, radius);
+        List<RestaurantDto> restaurants = restaurantService.findDtosByUserCategory(userId, longitude, latitude, radius);
 
         return ResponseEntity.ok(new ApiResponse(true, "유저 카테고리 기반 식당 조회", "restaurants", restaurants));
     }
@@ -66,17 +66,17 @@ public class RestaurantController {
                                                                @RequestParam @DecimalMin("0.001") @DecimalMax("0.02") BigDecimal radius) {
         log.debug("GetMapping /api/v1/restaurants");
 
-        List<RestaurantResponseDto> restaurants = restaurantService.getGameCards(userId, restaurantId, longitude, latitude, radius);
+        List<RestaurantDto> restaurants = restaurantService.getGameCards(userId, restaurantId, longitude, latitude, radius);
 
         return ResponseEntity.ok(new ApiResponse(true, "유저들의 카테고리 기반 식당 카드 조회", "restaurants", restaurants));
     }
 
     @ApiOperation(value = "식당 검색", notes = "식당을 검색합니다.")
     @GetMapping("/api/v1/restaurants/search")
-    public ResponseEntity<?> getRestaurant(Pageable pageable, @Valid @ModelAttribute RestaurantSearchCondition condition) {
+    public ResponseEntity<?> getRestaurant(Pageable pageable, @Valid @ModelAttribute RestaurantSearchConditionRequest condition) {
         log.debug("GetMapping /api/v1/restaurants/search");
 
-        Page<RestaurantResponseDto> restaurants = restaurantService.searchRestaurants(pageable, condition);
+        Page<RestaurantDto> restaurants = restaurantService.searchRestaurants(pageable, condition);
 
         return ResponseEntity.ok(new ApiResponse(true, "식당 검색", "restaurants", restaurants));
     }
@@ -86,7 +86,7 @@ public class RestaurantController {
     public ResponseEntity<?> getRestaurant(@PathVariable Long restaurantId) {
         log.debug("GetMapping /api/v1/restaurants/{restaurantId}");
 
-        RestaurantResponseDto restaurant = restaurantService.findDtoById(restaurantId);
+        RestaurantDto restaurant = restaurantService.findDtoById(restaurantId);
 
         return ResponseEntity.ok(new ApiResponse(true, "식당 조회", "restaurant", restaurant));
     }

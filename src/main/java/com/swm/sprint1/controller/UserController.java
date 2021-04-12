@@ -2,9 +2,9 @@ package com.swm.sprint1.controller;
 
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.RequestParamException;
-import com.swm.sprint1.payload.request.UserLikingReqeust;
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.UserInfoDto;
+import com.swm.sprint1.dto.request.userLikingReqeust;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.UserInfoDto;
 import com.swm.sprint1.security.CurrentUser;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.UserLikingService;
@@ -76,7 +76,7 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createUserLiking(@CurrentUser UserPrincipal currentUser,
                                               @PathVariable Long id,
-                                              @Valid @RequestBody UserLikingReqeust userLikingReqeust,
+                                              @Valid @RequestBody userLikingReqeust userLikingReqeust,
                                               BindingResult result) {
         log.debug("PostMapping /api/v1/users/{id}/liking");
 

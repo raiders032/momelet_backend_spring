@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.request;
+package com.swm.sprint1.dto;
 
 import com.swm.sprint1.domain.Liking;
 import lombok.*;

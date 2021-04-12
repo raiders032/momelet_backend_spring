@@ -5,7 +5,7 @@ import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.NotSupportedExtension;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.response.PostResponseDto;
+import com.swm.sprint1.dto.PostDto;
 import com.swm.sprint1.repository.post.PostDtoRepository;
 import com.swm.sprint1.repository.post.PostRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
@@ -56,7 +56,7 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public Page<PostResponseDto> getPost(Pageable pageable) {
+    public Page<PostDto> getPost(Pageable pageable) {
         return postDtoRepository.findAllPostResponseDto(pageable);
     }
 

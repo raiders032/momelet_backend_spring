@@ -2,7 +2,7 @@ package com.swm.sprint1.security.oauth2;
 
 
 import com.swm.sprint1.exception.BadRequestException;
-import com.swm.sprint1.payload.response.AuthResponse;
+import com.swm.sprint1.dto.response.AuthResponse;
 import com.swm.sprint1.security.Token;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.AuthService;

@@ -1,5 +1,6 @@
-package com.swm.sprint1.payload.request;
+package com.swm.sprint1.dto.request;
 
+import com.swm.sprint1.dto.UserLikingDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
-public class UserLikingReqeust {
+public class userLikingReqeust {
 
     @NotNull @Min(-180) @Max(180)
     private BigDecimal userLongitude;

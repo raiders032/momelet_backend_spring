@@ -6,7 +6,7 @@ import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.swm.sprint1.domain.Bookmark;
-import com.swm.sprint1.payload.response.BookmarkResponseDto;
+import com.swm.sprint1.dto.BookmarkDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,10 +24,10 @@ public class BookmarkDtoRepositoryImpl implements BookmarkDtoRepositoryCustom{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<BookmarkResponseDto> findAllByUserIdOrderByLike(Long userId, Pageable pageable) {
+    public Page<BookmarkDto> findAllByUserIdOrderByLike(Long userId, Pageable pageable) {
         NumberPath<Long> aliasLike = Expressions.numberPath(Long.class, "likecnt");
-        List<BookmarkResponseDto> contents = queryFactory
-                .select(Projections.fields(BookmarkResponseDto.class,
+        List<BookmarkDto> contents = queryFactory
+                .select(Projections.fields(BookmarkDto.class,
                         bookmark.id, restaurant.id.as("restaurantId"), restaurant.name,
                         restaurant.thumUrl, userLiking.id.count().as("likecnt"),
                         restaurant.latitude, restaurant.longitude
@@ -53,9 +53,9 @@ public class BookmarkDtoRepositoryImpl implements BookmarkDtoRepositoryCustom{
     }
 
     @Override
-    public Page<BookmarkResponseDto> findAllByUserIdOrderById(Long userId, Pageable pageable) {
-        List<BookmarkResponseDto> contents = queryFactory
-                .select(Projections.fields(BookmarkResponseDto.class,
+    public Page<BookmarkDto> findAllByUserIdOrderById(Long userId, Pageable pageable) {
+        List<BookmarkDto> contents = queryFactory
+                .select(Projections.fields(BookmarkDto.class,
                         bookmark.id, restaurant.id.as("restaurantId"), restaurant.name,
                         restaurant.thumUrl, userLiking.id.count().as("likecnt"),
                         restaurant.latitude, restaurant.longitude))

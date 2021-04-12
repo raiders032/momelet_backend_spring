@@ -1,6 +1,6 @@
 package com.swm.sprint1.exception;
 
-import com.swm.sprint1.payload.response.ApiResponse;
+import com.swm.sprint1.dto.response.ApiResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;

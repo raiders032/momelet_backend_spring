@@ -1,7 +1,7 @@
 package com.swm.sprint1.controller;
 
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.RestaurantPhotoResponseDto;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.RestaurantPhotoDto;
 import com.swm.sprint1.security.CurrentUser;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.RestaurantPhotoService;
@@ -42,7 +42,7 @@ public class RestaurantPhotoController {
     public ResponseEntity<?> getPhoto(@PathVariable Long restaurantId) {
         log.debug("GetMapping /api/v1/photos/restaurants/{restaurantId}");
 
-        List<RestaurantPhotoResponseDto> photos = restaurantPhotoService.findDtoByRestaurantId(restaurantId);
+        List<RestaurantPhotoDto> photos = restaurantPhotoService.findDtoByRestaurantId(restaurantId);
 
         return ResponseEntity.ok(new ApiResponse(true, "식당 사진 조회 완료", "photos", photos));
     }

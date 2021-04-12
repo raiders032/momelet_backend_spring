@@ -5,7 +5,7 @@ import com.swm.sprint1.domain.RestaurantPhoto;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.NotSupportedExtension;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.response.RestaurantPhotoResponseDto;
+import com.swm.sprint1.dto.RestaurantPhotoDto;
 import com.swm.sprint1.repository.photo.RestaurantPhotoDtoRepository;
 import com.swm.sprint1.repository.photo.RestaurantPhotoRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
@@ -48,7 +48,7 @@ public class RestaurantPhotoService {
     }
 
 
-    public List<RestaurantPhotoResponseDto> findDtoByRestaurantId(Long restaurantId) {
+    public List<RestaurantPhotoDto> findDtoByRestaurantId(Long restaurantId) {
         return restaurantPhotoDtoRepository.findAllByRestaurantId(restaurantId);
     }
 

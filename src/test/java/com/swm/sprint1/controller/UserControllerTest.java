@@ -3,10 +3,9 @@ package com.swm.sprint1.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swm.sprint1.domain.*;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.request.UserLikingDto;
-import com.swm.sprint1.payload.request.UserLikingReqeust;
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.AuthResponse;
+import com.swm.sprint1.dto.UserLikingDto;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.response.AuthResponse;
 import com.swm.sprint1.repository.category.CategoryRepository;
 import com.swm.sprint1.repository.user.UserLikingRepository;
 import com.swm.sprint1.repository.user.UserRepository;
@@ -50,7 +49,7 @@ public class UserControllerTest {
 
     private static BigDecimal longitude;
 
-    private static UserLikingReqeust userLikingReqeust;
+    private static com.swm.sprint1.dto.request.userLikingReqeust userLikingReqeust;
 
     private static List<UserLikingDto> userLikingDtoList= new ArrayList<>();
 
@@ -86,7 +85,7 @@ public class UserControllerTest {
             userLikingDtoList.add(likingDto);
         }
 
-        userLikingReqeust = UserLikingReqeust.builder()
+        userLikingReqeust = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
@@ -415,7 +414,7 @@ public class UserControllerTest {
             userLikingDtoList.add(likingDto);
         }
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
@@ -453,7 +452,7 @@ public class UserControllerTest {
             userLikingDtoList.add(likingDto);
         }
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
@@ -481,7 +480,7 @@ public class UserControllerTest {
         //given
         String uri = "/api/v1/users/" + user.getId() + "/liking";
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
                 .build();
@@ -508,7 +507,7 @@ public class UserControllerTest {
         //given
         String uri = "/api/v1/users/" + user.getId() + "/liking";
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(BigDecimal.valueOf(400))
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
@@ -536,7 +535,7 @@ public class UserControllerTest {
         //given
         String uri = "/api/v1/users/" + user.getId() + "/liking";
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(BigDecimal.valueOf(-400))
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
@@ -564,7 +563,7 @@ public class UserControllerTest {
         //given
         String uri = "/api/v1/users/" + user.getId() + "/liking";
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLiking(userLikingDtoList)
                 .build();
@@ -591,7 +590,7 @@ public class UserControllerTest {
         //given
         String uri = "/api/v1/users/" + user.getId() + "/liking";
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(BigDecimal.valueOf(400))
                 .userLiking(userLikingDtoList)
@@ -619,7 +618,7 @@ public class UserControllerTest {
         //given
         String uri = "/api/v1/users/" + user.getId() + "/liking";
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(BigDecimal.valueOf(-400))
                 .userLiking(userLikingDtoList)
@@ -657,7 +656,7 @@ public class UserControllerTest {
             userLikingDtoList.add(likingDto);
         }
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)
@@ -694,7 +693,7 @@ public class UserControllerTest {
             userLikingDtoList.add(likingDto);
         }
 
-        UserLikingReqeust wrongRequest = UserLikingReqeust.builder()
+        com.swm.sprint1.dto.request.userLikingReqeust wrongRequest = com.swm.sprint1.dto.request.userLikingReqeust.builder()
                 .userLatitude(latitude)
                 .userLongitude(longitude)
                 .userLiking(userLikingDtoList)

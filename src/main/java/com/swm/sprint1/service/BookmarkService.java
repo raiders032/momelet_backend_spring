@@ -4,7 +4,7 @@ import com.swm.sprint1.domain.Bookmark;
 import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.response.BookmarkResponseDto;
+import com.swm.sprint1.dto.BookmarkDto;
 import com.swm.sprint1.repository.bookmark.BookmarkDtoRepository;
 import com.swm.sprint1.repository.bookmark.BookmarkRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
@@ -43,7 +43,7 @@ public class BookmarkService {
         bookmarkRepository.delete(bookmark);
     }
 
-    public Page<BookmarkResponseDto> findBookmarkResponseDtoByUserId(Long userId, String filter, Pageable pageable) {
+    public Page<BookmarkDto> findBookmarkResponseDtoByUserId(Long userId, String filter, Pageable pageable) {
         if(filter.equals("like"))
             return bookmarkDtoRepository.findAllByUserIdOrderByLike(userId, pageable);
         return bookmarkDtoRepository.findAllByUserIdOrderById(userId, pageable);

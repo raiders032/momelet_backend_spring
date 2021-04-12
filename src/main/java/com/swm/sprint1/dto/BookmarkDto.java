@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @AllArgsConstructor
-public class BookmarkResponseDto {
+public class BookmarkDto {
 
     private Long id;
     private Long restaurantId;

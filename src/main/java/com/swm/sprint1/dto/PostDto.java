@@ -1,18 +1,14 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto;
 
-import com.swm.sprint1.domain.Restaurant;
-import com.swm.sprint1.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostResponseDto {
+public class PostDto {
 
     private Long id;
 

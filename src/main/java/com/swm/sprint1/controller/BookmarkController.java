@@ -1,7 +1,7 @@
 package com.swm.sprint1.controller;
 
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.BookmarkResponseDto;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.BookmarkDto;
 import com.swm.sprint1.security.CurrentUser;
 import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.BookmarkService;
@@ -41,7 +41,7 @@ public class BookmarkController {
                                             Pageable pageable) {
         log.debug("GetMapping /api/v1/bookmarks");
 
-        Page<BookmarkResponseDto> bookmarks = bookmarkService.findBookmarkResponseDtoByUserId(currentUser.getId(), filter, pageable);
+        Page<BookmarkDto> bookmarks = bookmarkService.findBookmarkResponseDtoByUserId(currentUser.getId(), filter, pageable);
 
         return ResponseEntity.ok(new ApiResponse(true, "북마크 조회 완료", "bookmarks", bookmarks));
     }

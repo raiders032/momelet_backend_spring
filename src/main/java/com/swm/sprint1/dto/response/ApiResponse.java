@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto.response;
 
 import lombok.*;
 
@@ -14,7 +14,6 @@ public class ApiResponse {
     private boolean success;
     private String errorCode;
     private String message;
-    private String detail;
     private Map<String, Object> data = new HashMap<>();
 
     public ApiResponse(boolean success, String message) {
