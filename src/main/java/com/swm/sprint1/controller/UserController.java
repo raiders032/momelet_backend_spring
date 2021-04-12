@@ -12,8 +12,7 @@ import com.swm.sprint1.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -28,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Validated
 @Api(value = "user")
 @RequiredArgsConstructor
@@ -36,13 +36,12 @@ public class UserController {
 
     private final UserService userService;
     private final UserLikingService userLikingService;
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @ApiOperation(value = "유저의 정보를 반환")
     @GetMapping("/api/v1/users/me")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> retrieveUserInfo(@CurrentUser UserPrincipal currentUser) {
-        logger.debug("GetMapping /api/v1/users/me");
+        log.debug("GetMapping /api/v1/users/me");
 
         User user = currentUser.getUser();
         Map<String, Integer> categories = userService.findAllCategoryNameByUserId(user.getId());
@@ -56,14 +55,14 @@ public class UserController {
     @PostMapping("/api/v1/users/{id}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> updateUserInfo(@CurrentUser UserPrincipal currentUser,
-                                            @RequestParam (required = false) MultipartFile imageFile,
+                                            @RequestParam(required = false) MultipartFile imageFile,
                                             @RequestParam @NotBlank String name,
                                             @RequestParam @NotEmpty List<String> categories,
                                             @PathVariable Long id) throws IOException {
-        logger.debug("PostMapping /api/v1/users/{id}");
+        log.debug("PostMapping /api/v1/users/{id}");
 
-        if(!id.equals(currentUser.getId())) {
-            logger.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
+        if (!id.equals(currentUser.getId())) {
+            log.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
             throw new RequestParamException("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다. :" + id, "103");
         }
 
@@ -72,22 +71,22 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse(true, "회원 정보 수정 완료"));
     }
 
-    @ApiOperation(value ="유저 의사표현 저장")
+    @ApiOperation(value = "유저 의사표현 저장")
     @PostMapping("/api/v1/users/{id}/liking")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createUserLiking(@CurrentUser UserPrincipal currentUser,
                                               @PathVariable Long id,
                                               @Valid @RequestBody UserLikingReqeust userLikingReqeust,
-                                              BindingResult result){
-        logger.debug("PostMapping /api/v1/users/{id}/liking");
+                                              BindingResult result) {
+        log.debug("PostMapping /api/v1/users/{id}/liking");
 
-        if(!id.equals(currentUser.getId())) {
-            logger.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
+        if (!id.equals(currentUser.getId())) {
+            log.error("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다.");
             throw new RequestParamException("jwt token의 유저 아이디와 path param 유저 아이디가 일치하지 않습니다. :" + id, "103");
         }
 
-        if(result.hasErrors()){
-            throw new RequestParamException(result.getAllErrors().toString(),"102");
+        if (result.hasErrors()) {
+            throw new RequestParamException(result.getAllErrors().toString(), "102");
         }
 
         List<Long> userLikingId = userLikingService.saveUserLiking(currentUser.getId(), userLikingReqeust);

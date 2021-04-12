@@ -7,8 +7,7 @@ import com.swm.sprint1.security.UserPrincipal;
 import com.swm.sprint1.service.PostService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +19,22 @@ import javax.validation.constraints.NotBlank;
 import java.io.IOException;
 
 
+@Slf4j
 @PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 @RestController
 public class PostController {
 
     private final PostService postService;
-    private final Logger logger = LoggerFactory.getLogger(PostController.class);
 
     @PreAuthorize("hasRole('USER')")
     @ApiOperation(value = "식당 정보 수정 요청", notes = "식당 정보 수정을 요청합니다.")
     @PostMapping("/api/v1/posts/restaurants/{restaurantId}")
     public ResponseEntity<?> createPost(@CurrentUser UserPrincipal currentUser,
                                         @PathVariable Long restaurantId,
-                                        @RequestParam (required = false) MultipartFile imageFile,
+                                        @RequestParam(required = false) MultipartFile imageFile,
                                         @RequestParam @NotBlank String claim) throws IOException {
-        logger.debug("PostMapping /api/v1/posts/restaurants/{restaurantId}");
+        log.debug("PostMapping /api/v1/posts/restaurants/{restaurantId}");
 
         postService.createPost(currentUser.getId(), restaurantId, imageFile, claim);
 
@@ -44,8 +43,8 @@ public class PostController {
 
     @ApiOperation(value = "식당 정보 수정 요청 조회", notes = "식당 정보 수정 요청을 조회합니다.")
     @GetMapping("/api/v1/posts")
-    public ResponseEntity<?> getPost(Pageable pageable){
-        logger.debug("GetMapping /api/v1/posts");
+    public ResponseEntity<?> getPost(Pageable pageable) {
+        log.debug("GetMapping /api/v1/posts");
 
         Page<PostResponseDto> posts = postService.getPost(pageable);
 
@@ -54,8 +53,8 @@ public class PostController {
 
     @ApiOperation(value = "식당 정보 수정 요청 삭제", notes = "식당 정보 수정 요청을 삭제합니다.")
     @DeleteMapping("/api/v1/posts/{postId}")
-    public ResponseEntity<?> getPost(@PathVariable Long postId){
-        logger.debug("DeleteMapping /api/v1/posts/{postId}");
+    public ResponseEntity<?> getPost(@PathVariable Long postId) {
+        log.debug("DeleteMapping /api/v1/posts/{postId}");
 
         postService.deletePost(postId);
 
