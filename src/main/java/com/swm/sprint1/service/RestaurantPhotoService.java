@@ -58,7 +58,7 @@ public class RestaurantPhotoService {
         String filename = imageFile.getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf("."));
         List<String> supportedExtension = Arrays.asList(".jpg", ".jpeg", ".png");
-        if(!supportedExtension.contains(extension)) {
+        if (!supportedExtension.contains(extension)) {
             throw new NotSupportedExtension(extension + "은 지원하지 않는 확장자입니다. jpg, jpeg, png만 지원합니다.");
         }
         imageUrl = s3Uploader.upload(imageFile, dir);
@@ -68,7 +68,7 @@ public class RestaurantPhotoService {
     @Transactional
     public void deletePhoto(Long userId, Long id) {
         RestaurantPhoto restaurantPhoto = restaurantPhotoRepository.findByUserIdAndId(userId, id)
-                .orElseThrow(()-> new ResourceNotFoundException("RestaurantPhoto", "id", id, "270"));
+                .orElseThrow(() -> new ResourceNotFoundException("RestaurantPhoto", "id", id, "270"));
         restaurantPhotoRepository.delete(restaurantPhoto);
     }
 }

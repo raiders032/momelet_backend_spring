@@ -4,7 +4,7 @@ import com.swm.sprint1.domain.Admin;
 import com.swm.sprint1.domain.AdminContext;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.repository.AdminRepository;
+import com.swm.sprint1.repository.user.AdminRepository;
 import com.swm.sprint1.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,22 +41,21 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(admin.getRole()));
-        return  new AdminContext(admin, roles);
+        return new AdminContext(admin, roles);
     }
 
     public UserDetails loadUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow(
-            () -> new ResourceNotFoundException("User", "id", id, "200")
+                () -> new ResourceNotFoundException("User", "id", id, "200")
         );
         return UserPrincipal.create(user);
     }
 
     public UserDetails loadUserByJwt(String jwt) {
         String role = tokenProvider.getRoleFromToken(jwt);
-        if(role.equals("ROLE_USER")){
+        if (role.equals("ROLE_USER")) {
             return loadUserById(tokenProvider.getUserIdFromToken(jwt));
-        }
-        else if(role.equals("ROLE_ADMIN")){
+        } else if (role.equals("ROLE_ADMIN")) {
             return loadUserByUsername(tokenProvider.getUsernameFromToken(jwt));
         }
         return null;

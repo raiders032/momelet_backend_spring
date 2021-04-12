@@ -29,7 +29,7 @@ public class BookmarkService {
     public void createBookmark(Long userId, Long restaurantId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId, "200"));
         Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new ResourceNotFoundException("Restaurant", "id", restaurantId, "210"));
-        if(bookmarkRepository.existsByUserIdAndRestaurantId(userId, restaurantId))
+        if (bookmarkRepository.existsByUserIdAndRestaurantId(userId, restaurantId))
             return;
         Bookmark bookmark = new Bookmark(user, restaurant);
         bookmarkRepository.save(bookmark);
@@ -44,7 +44,7 @@ public class BookmarkService {
     }
 
     public Page<BookmarkDto> findBookmarkResponseDtoByUserId(Long userId, String filter, Pageable pageable) {
-        if(filter.equals("like"))
+        if (filter.equals("like"))
             return bookmarkDtoRepository.findAllByUserIdOrderByLike(userId, pageable);
         return bookmarkDtoRepository.findAllByUserIdOrderById(userId, pageable);
     }

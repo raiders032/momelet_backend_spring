@@ -47,7 +47,7 @@ public class PostService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId, "200"));
 
-        if(imageFile != null)
+        if (imageFile != null)
             imageUrl = uploadImageFile(imageFile);
         else
             imageUrl = null;
@@ -66,7 +66,7 @@ public class PostService {
         String filename = imageFile.getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf("."));
         List<String> supportedExtension = Arrays.asList(".jpg", ".jpeg", ".png");
-        if(!supportedExtension.contains(extension)) {
+        if (!supportedExtension.contains(extension)) {
             throw new NotSupportedExtension(extension + "은 지원하지 않는 확장자입니다. jpg, jpeg, png만 지원합니다.");
         }
         imageUrl = s3Uploader.upload(imageFile, dir);
@@ -75,7 +75,7 @@ public class PostService {
 
     @Transactional
     public void deletePost(Long postId) {
-        if(!postRepository.existsById(postId))
+        if (!postRepository.existsById(postId))
             throw new ResourceNotFoundException("Post", "id", postId, "240");
         postRepository.deleteById(postId);
     }

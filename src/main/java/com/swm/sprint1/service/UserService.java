@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.util.*;
 
 @RequiredArgsConstructor
-@Service
 @Transactional(readOnly = true)
+@Service
 public class UserService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
@@ -32,7 +32,7 @@ public class UserService {
         List<Category> categories = categoryRepository.findCategoryByCategoryName(categoryNames);
         String imageUrl;
 
-        if(imageFile != null)
+        if (imageFile != null)
             imageUrl = s3Uploader.uploadImageFile(imageFile);
         else
             imageUrl = user.getImageUrl();

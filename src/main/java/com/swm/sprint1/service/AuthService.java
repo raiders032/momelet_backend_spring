@@ -21,7 +21,6 @@ import java.util.Optional;
 public class AuthService {
 
     private final TokenProvider tokenProvider;
-
     private final CustomUserDetailsService customUserDetailsService;
     private final UserRefreshTokenRepository userRefreshTokenRepository;
 
@@ -47,7 +46,7 @@ public class AuthService {
 
         Optional<UserRefreshToken> byUserId = userRefreshTokenRepository.findByUserId(userId);
 
-        if(byUserId.isPresent())
+        if (byUserId.isPresent())
             byUserId.get().updateRefreshToken(refreshToken.getJwtToken());
         else
             userRefreshTokenRepository.save(new UserRefreshToken(userId, refreshToken.getJwtToken()));
@@ -66,7 +65,7 @@ public class AuthService {
 
         Optional<UserRefreshToken> byUserId = userRefreshTokenRepository.findByUserId(userId);
 
-        if(byUserId.isPresent())
+        if (byUserId.isPresent())
             byUserId.get().updateRefreshToken(refreshToken.getJwtToken());
         else
             userRefreshTokenRepository.save(new UserRefreshToken(userId, refreshToken.getJwtToken()));
@@ -85,7 +84,7 @@ public class AuthService {
 
         Optional<UserRefreshToken> byUserId = userRefreshTokenRepository.findByUserId(userId);
 
-        if(byUserId.isPresent())
+        if (byUserId.isPresent())
             byUserId.get().updateRefreshToken(refreshToken.getJwtToken());
         else
             userRefreshTokenRepository.save(new UserRefreshToken(userId, refreshToken.getJwtToken()));
