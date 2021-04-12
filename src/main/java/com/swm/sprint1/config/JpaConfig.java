@@ -33,7 +33,7 @@ public class JpaConfig {
     }
 
     @Bean
-    public JpaResultMapper jpaResultMapper(){
+    public JpaResultMapper jpaResultMapper() {
         return new JpaResultMapper();
     }
 
@@ -41,12 +41,15 @@ public class JpaConfig {
         @Override
         public Optional<Long> getCurrentAuditor() {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
             if (authentication == null ||
-                    !authentication.isAuthenticated() ||
-                    authentication instanceof AnonymousAuthenticationToken) {
+                !authentication.isAuthenticated() ||
+                authentication instanceof AnonymousAuthenticationToken) {
                 return Optional.empty();
             }
+
             UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
             return Optional.ofNullable(userPrincipal.getId());
         }
     }

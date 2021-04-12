@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.request;
+package com.swm.sprint1.dto.request;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
-public class RestaurantSearchCondition {
+public class RestaurantSearchConditionRequest {
     private String name;
 
     @NotNull

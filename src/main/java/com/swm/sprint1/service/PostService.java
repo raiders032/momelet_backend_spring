@@ -5,7 +5,7 @@ import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.NotSupportedExtension;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.response.PostResponseDto;
+import com.swm.sprint1.dto.PostDto;
 import com.swm.sprint1.repository.post.PostDtoRepository;
 import com.swm.sprint1.repository.post.PostRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
@@ -47,7 +47,7 @@ public class PostService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId, "200"));
 
-        if(imageFile != null)
+        if (imageFile != null)
             imageUrl = uploadImageFile(imageFile);
         else
             imageUrl = null;
@@ -56,7 +56,7 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public Page<PostResponseDto> getPost(Pageable pageable) {
+    public Page<PostDto> getPost(Pageable pageable) {
         return postDtoRepository.findAllPostResponseDto(pageable);
     }
 
@@ -66,7 +66,7 @@ public class PostService {
         String filename = imageFile.getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf("."));
         List<String> supportedExtension = Arrays.asList(".jpg", ".jpeg", ".png");
-        if(!supportedExtension.contains(extension)) {
+        if (!supportedExtension.contains(extension)) {
             throw new NotSupportedExtension(extension + "은 지원하지 않는 확장자입니다. jpg, jpeg, png만 지원합니다.");
         }
         imageUrl = s3Uploader.upload(imageFile, dir);
@@ -75,7 +75,7 @@ public class PostService {
 
     @Transactional
     public void deletePost(Long postId) {
-        if(!postRepository.existsById(postId))
+        if (!postRepository.existsById(postId))
             throw new ResourceNotFoundException("Post", "id", postId, "240");
         postRepository.deleteById(postId);
     }

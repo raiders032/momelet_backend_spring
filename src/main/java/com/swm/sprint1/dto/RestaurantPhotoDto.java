@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class RestaurantPhotoResponseDto {
+public class RestaurantPhotoDto {
     private Long id;
 
     private Long restaurantId;

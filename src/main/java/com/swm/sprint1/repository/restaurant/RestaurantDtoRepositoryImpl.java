@@ -9,8 +9,8 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.swm.sprint1.domain.QCategory;
 import com.swm.sprint1.domain.Restaurant;
-import com.swm.sprint1.payload.request.RestaurantSearchCondition;
-import com.swm.sprint1.payload.response.RestaurantResponseDto;
+import com.swm.sprint1.dto.request.RestaurantSearchConditionRequest;
+import com.swm.sprint1.dto.RestaurantDto;
 import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.data.domain.Page;
@@ -36,7 +36,7 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
     private final JpaResultMapper jpaResultMapper;
 
     @Override
-    public Page<RestaurantResponseDto> searchAllOrderByLikeCount(Pageable pageable, RestaurantSearchCondition condition) {
+    public Page<RestaurantDto> searchAllOrderByLikeCount(Pageable pageable, RestaurantSearchConditionRequest condition) {
         NumberPath<Long> aliasLike = Expressions.numberPath(Long.class, "likeCount");
         List<Tuple> tuples = queryFactory
                 .select(restaurant, userLiking.id.count().as(aliasLike))
@@ -51,8 +51,8 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        List<RestaurantResponseDto> content = tuples.stream()
-                .map(tuple -> new RestaurantResponseDto(tuple.get(0, Restaurant.class), tuple.get(1, Long.class)))
+        List<RestaurantDto> content = tuples.stream()
+                .map(tuple -> new RestaurantDto(tuple.get(0, Restaurant.class), tuple.get(1, Long.class)))
                 .collect(Collectors.toList());
 
         JPAQuery<Restaurant> countQuery = queryFactory
@@ -67,7 +67,7 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
     }
 
     @Override
-    public Page<RestaurantResponseDto> searchAllOrderByDistance(Pageable pageable, RestaurantSearchCondition condition) {
+    public Page<RestaurantDto> searchAllOrderByDistance(Pageable pageable, RestaurantSearchConditionRequest condition) {
 
         String sql =
                 "   select  " +
@@ -111,7 +111,7 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
                 .setParameter("offset", pageable.getOffset())
                 .setParameter("limit", pageable.getPageSize());
 
-        List<RestaurantResponseDto> content = jpaResultMapper.list(query, RestaurantResponseDto.class);
+        List<RestaurantDto> content = jpaResultMapper.list(query, RestaurantDto.class);
 
         JPAQuery<Restaurant> countQuery = queryFactory
                 .select(restaurant)
@@ -124,7 +124,7 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
     }
 
     @Override
-    public List<RestaurantResponseDto> findAllByUserId(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
+    public List<RestaurantDto> findAllByUserId(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
         QCategory c = new QCategory("c");
         List<Tuple> tuples = queryFactory
                 .select(restaurant, userLiking.id.count().as("like"))
@@ -142,15 +142,15 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
                 .limit(100)
                 .fetch();
 
-        List<RestaurantResponseDto> restaurantResponseDtos = tuples.stream()
-                .map(tuple -> new RestaurantResponseDto(tuple.get(0, Restaurant.class), tuple.get(1, Long.class)))
+        List<RestaurantDto> restaurantDtos = tuples.stream()
+                .map(tuple -> new RestaurantDto(tuple.get(0, Restaurant.class), tuple.get(1, Long.class)))
                 .collect(Collectors.toList());
 
-        return restaurantResponseDtos;
+        return restaurantDtos;
     }
 
     @Override
-    public List<RestaurantResponseDto> findAllById(List<Long> restaurantIds) {
+    public List<RestaurantDto> findAllById(List<Long> restaurantIds) {
         List<Tuple> tuples = queryFactory
                 .select(restaurant, userLiking.id.count().as("like"))
                 .from(restaurant)
@@ -160,7 +160,7 @@ public class RestaurantDtoRepositoryImpl implements RestaurantDtoRepositoryCusto
                 .fetch();
 
         return tuples.stream()
-                .map(tuple -> new RestaurantResponseDto(tuple.get(0, Restaurant.class), tuple.get(1, Long.class)))
+                .map(tuple -> new RestaurantDto(tuple.get(0, Restaurant.class), tuple.get(1, Long.class)))
                 .collect(Collectors.toList());
     }
 

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swm.sprint1.domain.AuthProvider;
 import com.swm.sprint1.domain.Category;
 import com.swm.sprint1.domain.User;
-import com.swm.sprint1.payload.response.ApiResponse;
-import com.swm.sprint1.payload.response.AuthResponse;
-import com.swm.sprint1.payload.response.RestaurantResponseDto;
+import com.swm.sprint1.dto.response.ApiResponse;
+import com.swm.sprint1.dto.response.AuthResponse;
+import com.swm.sprint1.dto.RestaurantDto;
 import com.swm.sprint1.repository.category.CategoryRepository;
 import com.swm.sprint1.repository.user.UserRepository;
 import com.swm.sprint1.service.AuthService;
@@ -24,7 +24,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -160,7 +159,7 @@ public class RestaurantControllerTest {
         //then
         String contentAsString = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
         ApiResponse apiResponse = objectMapper.readValue(contentAsString, ApiResponse.class);
-        List<RestaurantResponseDto> restaurants = (List<RestaurantResponseDto>) apiResponse.getData().get("restaurants");
+        List<RestaurantDto> restaurants = (List<RestaurantDto>) apiResponse.getData().get("restaurants");
         assertThat(restaurants.size()).isEqualTo(100);
         //assertThat(restaurants).extracting("categories").startsWith("중식");
     }
@@ -420,7 +419,7 @@ public class RestaurantControllerTest {
         //then
         String contentAsString = result.getResponse().getContentAsString();
         ApiResponse apiResponse = objectMapper.readValue(contentAsString, ApiResponse.class);
-        List<RestaurantResponseDto> restaurants = (List<RestaurantResponseDto>) apiResponse.getData().get("restaurants");
+        List<RestaurantDto> restaurants = (List<RestaurantDto>) apiResponse.getData().get("restaurants");
         assertThat(restaurants.size()).isEqualTo(7);
     }
 

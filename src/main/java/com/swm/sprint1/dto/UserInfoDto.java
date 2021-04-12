@@ -1,7 +1,9 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Map;
 
@@ -20,5 +22,15 @@ public class UserInfoDto {
         this.email=email;
         this.imageUrl=imageUrl;
         this.categories=categories;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MenuDto {
+        private Long id;
+        private String name;
+        private int price;
     }
 }

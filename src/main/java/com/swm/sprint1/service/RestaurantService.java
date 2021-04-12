@@ -1,14 +1,13 @@
 package com.swm.sprint1.service;
 
+import com.swm.sprint1.dto.RestaurantDto;
+import com.swm.sprint1.dto.request.RestaurantSearchConditionRequest;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.exception.RestaurantLessThan7Exception;
-import com.swm.sprint1.payload.request.RestaurantSearchCondition;
-import com.swm.sprint1.payload.response.RestaurantResponseDto;
 import com.swm.sprint1.repository.restaurant.RestaurantDtoRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,19 +17,19 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final RestaurantDtoRepository restaurantDtoRepository;
-    private final Logger logger = LoggerFactory.getLogger(RestaurantService.class);
 
-    public List<RestaurantResponseDto> findDtosByUserCategory(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
+    public List<RestaurantDto> findDtosByUserCategory(Long userId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
         return restaurantDtoRepository.findAllByUserId(userId, longitude, latitude, radius);
     }
 
-    public Page<RestaurantResponseDto> searchRestaurants(Pageable pageable, RestaurantSearchCondition condition) {
+    public Page<RestaurantDto> searchRestaurants(Pageable pageable, RestaurantSearchConditionRequest condition) {
         if (condition.getFilter().equals("like")) {
             return restaurantDtoRepository.searchAllOrderByLikeCount(pageable, condition);
         }
@@ -38,11 +37,11 @@ public class RestaurantService {
         return restaurantDtoRepository.searchAllOrderByDistance(pageable, condition);
     }
 
-    public List<RestaurantResponseDto> getGameCards(String userId, String restaurantId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
-        logger.debug("findGameCards 호출");
+    public List<RestaurantDto> getGameCards(String userId, String restaurantId, BigDecimal longitude, BigDecimal latitude, BigDecimal radius) {
+        log.debug("findGameCards 호출");
 
         List<Long> userIds = getSplitUserIds(userId);
-        Set<RestaurantResponseDto> restaurants = new HashSet<>();
+        Set<RestaurantDto> restaurants = new HashSet<>();
 
         if (!restaurantId.isEmpty()) {
             Set<Long> restaurantIds = new HashSet<>(Arrays.stream(restaurantId.split(",")).map(Long::parseLong).collect(Collectors.toList()));
@@ -50,12 +49,12 @@ public class RestaurantService {
         }
 
         if (restaurants.size() < 7) {
-            Set<RestaurantResponseDto> candidates = new HashSet<>();
+            Set<RestaurantDto> candidates = new HashSet<>();
             userIds.forEach(id -> candidates.addAll(restaurantDtoRepository.findAllByUserId(id, longitude, latitude, radius)));
-            List<RestaurantResponseDto> filteredCandidate = candidates.stream()
+            List<RestaurantDto> filteredCandidate = candidates.stream()
                     .filter(candidate -> !restaurants.contains(candidate))
                     .collect(Collectors.toList());
-            if(filteredCandidate.size() < 7 - restaurants.size())
+            if (filteredCandidate.size() < 7 - restaurants.size())
                 throw new RestaurantLessThan7Exception("식당 카드가 7장 미만입니다.");
             Collections.shuffle(filteredCandidate);
             restaurants.addAll(filteredCandidate.subList(0, 7 - restaurants.size()));
@@ -68,8 +67,8 @@ public class RestaurantService {
         return Arrays.stream(userIds.split(",")).map(Long::parseLong).collect(Collectors.toList());
     }
 
-    public RestaurantResponseDto findDtoById(Long restaurantId) {
-        List<RestaurantResponseDto> dtosById = restaurantDtoRepository.findAllById(Arrays.asList(restaurantId));
+    public RestaurantDto findDtoById(Long restaurantId) {
+        List<RestaurantDto> dtosById = restaurantDtoRepository.findAllById(Arrays.asList(restaurantId));
         if (!dtosById.isEmpty())
             return dtosById.get(0);
         else

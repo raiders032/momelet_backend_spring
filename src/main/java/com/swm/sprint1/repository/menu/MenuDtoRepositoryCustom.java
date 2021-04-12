@@ -1,9 +1,9 @@
 package com.swm.sprint1.repository.menu;
 
-import com.swm.sprint1.payload.response.MenuResponseDto;
+import com.swm.sprint1.dto.UserInfoDto;
 
 import java.util.List;
 
 public interface MenuDtoRepositoryCustom {
-    List<MenuResponseDto> findMenuResponseDto(Long restaurantId);
+    List<UserInfoDto.MenuDto> findMenuResponseDto(Long restaurantId);
 }

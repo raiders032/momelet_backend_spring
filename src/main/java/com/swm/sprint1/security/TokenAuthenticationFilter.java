@@ -3,7 +3,7 @@ package com.swm.sprint1.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swm.sprint1.exception.CustomJwtException;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.payload.response.ApiResponse;
+import com.swm.sprint1.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

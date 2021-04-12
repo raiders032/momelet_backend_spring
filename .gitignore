@@ -24,10 +24,12 @@ dist/
 nbdist/
 .nb-gradle/
 
-logs
 AuthKey_*.p8
 src/main/resources/application-aws.properties
 src/main/resources/application-jwt.properties
 src/main/resources/application-oauth.properties
 src/main/resources/*db*
 src/test/resources/*db*
+out
+logs
+*.log

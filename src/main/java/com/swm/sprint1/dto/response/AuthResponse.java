@@ -1,4 +1,4 @@
-package com.swm.sprint1.payload.response;
+package com.swm.sprint1.dto.response;
 
 import com.swm.sprint1.security.Token;
 import lombok.Getter;

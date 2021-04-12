@@ -2,8 +2,7 @@ package com.swm.sprint1.repository.photo;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.swm.sprint1.domain.QRestaurantPhoto;
-import com.swm.sprint1.payload.response.RestaurantPhotoResponseDto;
+import com.swm.sprint1.dto.RestaurantPhotoDto;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -16,9 +15,9 @@ public class RestaurantPhotoDtoRepositoryImpl implements RestaurantPhotoDtoRepos
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<RestaurantPhotoResponseDto> findAllByRestaurantId(Long restaurantId) {
+    public List<RestaurantPhotoDto> findAllByRestaurantId(Long restaurantId) {
         return queryFactory
-                .select(Projections.fields(RestaurantPhotoResponseDto.class,
+                .select(Projections.fields(RestaurantPhotoDto.class,
                         restaurantPhoto.id,
                         restaurantPhoto.restaurant.id.as("restaurantId"),
                         restaurantPhoto.user.id.as("userId"),
