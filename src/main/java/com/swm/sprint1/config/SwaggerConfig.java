@@ -22,6 +22,7 @@ import java.util.List;
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -34,7 +35,6 @@ public class SwaggerConfig {
                 .securitySchemes(Arrays.asList(apiKey()));
     }
 
-    // Describe your apis
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Momlet Sample APIs")
@@ -43,9 +43,8 @@ public class SwaggerConfig {
                 .build();
     }
 
-    // Only select apis that matches the given Predicates.
+
     private Predicate<String> paths() {
-        // Match all paths except /error
         return Predicates.and(
                 PathSelectors.regex("/.*"),
                 Predicates.not(PathSelectors.regex("/error.*"))
