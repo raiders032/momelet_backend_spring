@@ -7,7 +7,7 @@ import com.swm.sprint1.domain.Restaurant;
 import com.swm.sprint1.dto.UserInfoDto;
 import com.swm.sprint1.exception.ResourceNotFoundException;
 import com.swm.sprint1.dto.response.ApiResponse;
-import com.swm.sprint1.repository.AdminRepository;
+import com.swm.sprint1.repository.admin.AdminRepository;
 import com.swm.sprint1.repository.menu.MenuRepository;
 import com.swm.sprint1.repository.restaurant.RestaurantRepository;
 import com.swm.sprint1.security.TokenProvider;

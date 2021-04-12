@@ -4,7 +4,7 @@ import com.swm.sprint1.domain.Admin;
 import com.swm.sprint1.domain.AdminContext;
 import com.swm.sprint1.domain.User;
 import com.swm.sprint1.exception.ResourceNotFoundException;
-import com.swm.sprint1.repository.user.AdminRepository;
+import com.swm.sprint1.repository.admin.AdminRepository;
 import com.swm.sprint1.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
